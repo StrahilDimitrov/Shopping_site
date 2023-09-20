@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Shopping</title>
+    <link rel="icon" type="image/icon" href="../image/logo.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/shopping.css"/>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="#" class="logo"><img src="../image/logo.png" width="120" height="80"></a>
+
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Features</a>
+        <a href="#">Products</a>
+        <a href="#">Categories</a>
+        <a href="#">Review</a>
+        <a href="#">Blogs</a>
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-bars" id="menu"></div>
+        <div class="fas fa-search" id="search"></div>
+        <div class="fas fa-shopping-cart" id="cart"></div>
+        <div class="fas fa-user" id="user"></div>
+    </div>
+
+    <form action="" class="search-form">
+        <input type="search" id="search-box" placeholder="Search here..."/>
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+    <div class="shopping-cart">
+        <div class="box">
+            <i class="fas fa-trash"></i>
+            <img src="../image/acer.png"/>
+            <div class="content">
+                <h3>ACER NITRO-5</h3>
+                <span class="price">1299лв.</span><br/>
+                <span class="quantity">Quantity: 1</span>
+            </div>
+        </div>
+        <div class="total">Total: 1299лв.</div>
+        <a href="#" class="btn">Checkout</a>
+    </div>
+
+    <form action="" class="login">
+        <h3>LogIn</h3>
+        <input type="email" placeholder="Enter email..." class="box"/>
+        <input type="password" placeholder="Enter password..." class="box"/>
+        <p>Forgot your password? <a href="#">Click Here</a></p>
+        <p>Don't have an account<a href="#">Create Now</a></p>
+        <input type="submit" value="Login Now" class="btn"/>
+    </form>
+
+</header>
+
+<section class="home" id="home">
+    <div class="content">
+        <h3>The latest and <span>most advanced</span>technologies on the market</h3>
+        <p>A wide range of computers, laptops, monitors and all kinds of accessories for every young person.</p>
+        <a href="#" class="btn">Shop Now</a>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <h1 class="heading">Our <span>Features</span></h1>
+    <div class="boxContainer">
+        <div class="box">
+            <img src="../image/courier.png" alt="" width="200" height="170"/>
+            <h3>Free delivery</h3>
+            <p>Free shipping anywhere in the world!</p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+        <div class="box">
+            <img src="../image/technical.png" alt=""  width="220" height="180"/>
+            <h3>Free consultation</h3>
+            <p>Free on-site or online consultation!</p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+        <div class="box">
+            <img src="../image/technology_medical.png" alt="" width="200" height="180"/>
+            <h3>Free repair</h3>
+            <p>Free repair for two years!</p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/shopping.js"></script>
+</body>
+
+</html>
