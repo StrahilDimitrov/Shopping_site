@@ -402,3 +402,155 @@ section{
     color: #808080;
     padding: 1rem 0;
 }
+
+.product .productSlide{
+    padding: 1rem;
+}
+
+.product .productSlide:first-child{
+    margin-bottom: 2rem;
+}
+
+.product .productSlide .box {
+    background: #FFF;
+    border-radius: .5rem;
+    text-align: center;
+    padding: 3rem 2rem;
+    outline-offset: -1rem;
+    outline: #808080;
+    box-shadow: #EEE;
+}
+
+.product .productSlide .box img{
+    height: 20rem;
+}
+
+.product .productSlide .box h3{
+    font-size: 2.5rem;
+    color: #000;
+}
+
+.product .productSlide .box .price {
+    font-size: 2rem;
+    color: #808080;
+    padding: .5rem 0;
+}
+
+.product .productSlide .box .stars i {
+    font-size: 1.7rem;
+    color: #FF8C00;
+    padding: .5rem 0;
+}
+
+.review .reviewSlide{
+    padding: 1rem;
+}
+
+.review .reviewSlide .box {
+    background: #FFF;
+    border-radius: .5rem;
+    text-align: center;
+    padding: 3rem 2rem;
+    outline-offset: -1rem;
+    outline: #808080;
+    box-shadow: #EEE;
+    transition: .2s line;
+}
+
+.review .reviewSlide .box:hover {
+    outline: #808080;
+    outline-offset: 0rem;
+}
+
+.review .reviewSlide .box img {
+    height: 12rem;
+    width: 14rem;
+    border-radius: 50%;
+}
+
+.review .reviewSlide .box p {
+    padding: 1rem 0;
+    line-height: 1.8rem;
+    color: #808080;
+    font-size: 1.5rem;
+}
+
+.review .reviewSlide .box h3 {
+    padding-bottom: .5rem;
+    color: #000;
+    font-size: 2.2rem;
+}
+
+.review .reviewSlide .box .stars i {
+    color: #FF8C00;
+    font-size: 1.7rem;
+}
+
+.technology {
+    background: #FFF;
+}
+
+.technology .boxContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.technology .boxContainer .box h3 {
+    font-size: 2.5rem;
+    color: #000;
+    padding: 1rem 0;
+}
+
+.technology .boxContainer .box h3 i{
+    color: #FF8C00;
+}
+
+.technology .boxContainer .box .links {
+    display: block;
+    font-size: 1.5rem;
+    color: #808080;
+    padding: 1rem 0;
+}
+
+.technology .boxContainer .box .links i {
+    color: #FF8C00;
+    padding-right: .5rem;
+}
+
+.technology .boxContainer .box .links:hover i{
+    padding-right: 2rem;
+}
+
+.technology .boxContainer .box .share a {
+    height: 4rem;
+    width: 4rem;
+    line-height: 4rem;
+    border: .5rem;
+    font-size: 2rem;
+    color: #0000FF;
+    margin-left: .2rem;
+    background: #EEE;
+    text-align: center;
+}
+
+.technology .boxContainer .box .share a:hover {
+    background: #FF8C00;
+    color: #FFF;
+}
+
+.technology .boxContainer .box .email {
+    width: 70%;
+    margin: .7rem 0;
+    padding: 1rem;
+    border-radius: .5rem;
+    background: #EEE;
+    font-size: 1.6rem;
+    color: #000;
+    text-transform: none;
+}
+
+.technology .boxContainer .box .payment-img {
+    margin-top: 2rem;
+    height: 5rem;
+}
