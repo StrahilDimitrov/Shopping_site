@@ -22,10 +22,16 @@ public class ProductEntity {
 
 	@Column
 	private int quantity;
-	
 
 	public ProductEntity() {
 
+	}
+
+	public ProductEntity(String productName, BigDecimal price, String description, int quantity) {
+		this.productName = productName;
+		this.price = price;
+		this.description = description;
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
