@@ -22,7 +22,7 @@ public class ShoppingItemEntity {
 	private ProductEntity product;
 
 	@ManyToOne
-	private ShoppingCartEntity cartId;
+	private ShoppingCartEntity cart;
 
 	@Column
 	private int quantity;
@@ -52,12 +52,12 @@ public class ShoppingItemEntity {
 		return this;
 	}
 
-	public ShoppingCartEntity getCartId() {
-		return cartId;
+	public ShoppingCartEntity getCart() {
+		return cart;
 	}
 
-	public ShoppingItemEntity setCartId(ShoppingCartEntity cartId) {
-		this.cartId = cartId;
+	public ShoppingItemEntity setCart(ShoppingCartEntity cart) {
+		this.cart = cart;
 		return this;
 	}
 

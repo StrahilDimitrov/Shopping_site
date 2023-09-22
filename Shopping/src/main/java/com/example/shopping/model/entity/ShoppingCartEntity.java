@@ -1,5 +1,6 @@
 package com.example.shopping.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -21,7 +22,38 @@ public class ShoppingCartEntity {
 	@OneToOne
 	private UserEntity user;
 
-	@OneToMany(mappedBy = "cartId", targetEntity = ShoppingItemEntity.class)
+	@OneToMany(mappedBy = "cart", targetEntity = ShoppingItemEntity.class)
 	private List<ShoppingItemEntity> items;
+
+	public ShoppingCartEntity() {
+		this.items = new ArrayList<>();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public ShoppingCartEntity setId(Long id) {
+		this.id = id;
+		return this;
+	}
+
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public ShoppingCartEntity setUser(UserEntity user) {
+		this.user = user;
+		return this;
+	}
+
+	public List<ShoppingItemEntity> getItems() {
+		return items;
+	}
+
+	public ShoppingCartEntity setItems(List<ShoppingItemEntity> items) {
+		this.items = items;
+		return this;
+	}
 
 }
