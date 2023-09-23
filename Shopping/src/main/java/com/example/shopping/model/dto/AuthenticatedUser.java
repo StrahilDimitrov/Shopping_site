@@ -1,4 +1,4 @@
-package com.example.shopping.domain.dto;
+package com.example.shopping.model.dto;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -15,7 +15,7 @@
 <div class="container">
     <div class="center">
         <h1>Register</h1>
-        <form th:method="POST" th:action="/register">
+        <form th:method="POST" th:action="@{/auth/register}">
             <div class="txt_field">
                 <input type="email" name="email" required>
                 <span></span>
@@ -33,7 +33,7 @@
             </div>
             <input name="submit" type="Submit" value="Sign Up">
             <div class="signup_link">
-                Have an Account ? <a th:href="/login">Login Here</a>
+                Have an Account ? <a href="/auth/login">Login Here</a>
             </div>
         </form>
     </div>

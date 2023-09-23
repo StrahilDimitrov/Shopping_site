@@ -9,16 +9,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.example.shopping.domain.dto.AuthenticatedUser;
+import com.example.shopping.model.dto.AuthenticatedUser;
 
 @Configuration
-public class SecutiryConfiguration {
+public class SecurityConfiguration {
 
 	@Bean
 	SecurityFilterChain secFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeHttpRequests(
 				request -> request.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-						.requestMatchers("/login", "/", "/login-error", "/register").permitAll());
+						.requestMatchers("/auth/login", "/", "/login-error", "/auth/register").permitAll());
 
 		return httpSecurity.build();
 	}
