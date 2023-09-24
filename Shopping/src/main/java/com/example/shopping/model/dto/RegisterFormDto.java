@@ -1,7 +1,5 @@
 package com.example.shopping.model.dto;
 
-import com.example.shopping.model.entity.UserEntity;
-
 public class RegisterFormDto {
 	private String email;
 	
@@ -43,13 +41,4 @@ public class RegisterFormDto {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public static UserEntity mapToUserEntity(RegisterFormDto registeredUser) {
-		UserEntity user = new UserEntity();
-		
-		user.setEmail(registeredUser.getEmail())
-			.setPassword(registeredUser.getPassword())
-			.setPhoneNumber(registeredUser.getPhoneNumber());
-		
-		return user;
-	}
 }

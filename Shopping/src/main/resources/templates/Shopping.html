@@ -2,239 +2,218 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Shopping</title>
-    <link rel="icon" type="image/icon" href="../static/image/logo.png"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/shopping.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/shopping.css"/>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Shopping</title>
+	<link rel="icon" type="image/icon" href="../static/image/logo.png" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/shopping.css" />
+	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/shopping.css" />
 </head>
 
 <body>
 
-<header class="header">
-    <a href="#" class="logo"><img src="../static/image/logo.png" width="120" height="80"></a>
+	<header class="header">
+		<a href="#" class="logo"><img src="/images/logo.png" width="120" height="80"></a>
 
-    <nav class="navbar">
-        <a href="#">Home</a>
-        <a href="#">Features</a>
-        <a href="#">Products</a>
-        <a href="#">Categories</a>
-        <a href="#">Review</a>
-        <a href="#">Blogs</a>
-    </nav>
+		<nav class="navbar">
+			<a href="#">Home</a>
+			<a href="#">Features</a>
+			<a href="#">Products</a>
+			<a href="#">Categories</a>
+			<a href="#">Review</a>
+			<a href="#">Blogs</a>
+		</nav>
 
-    <div class="icons">
-        <div class="fas fa-bars" id="menu"></div>
-        <div class="fas fa-search" id="search"></div>
-        <div class="fas fa-shopping-cart" id="cart"></div>
-        <div class="fas fa-user" id="user"></div>
-    </div>
+		<div class="icons">
+			<div class="fas fa-bars" id="menu"></div>
+			<div class="fas fa-search" id="search"></div>
+			<div class="fas fa-shopping-cart" id="cart"></div>
+			<div class="fas fa-user" id="user"></div>
+		</div>
 
-    <form action="" class="search-form">
-        <input type="search" id="search-box" placeholder="Search here..."/>
-        <label for="search-box" class="fas fa-search"></label>
-    </form>
+		<form action="" class="search-form">
+			<input type="search" id="search-box" placeholder="Search here..." />
+			<label for="search-box" class="fas fa-search"></label>
+		</form>
 
-    <div class="shopping-cart">
-        <div class="box">
-            <i class="fas fa-trash"></i>
-            <img src="../static/image/acer.png"/>
-            <div class="content">
-                <h3>ACER NITRO-5</h3>
-                <span class="price">1299лв.</span><br/>
-                <span class="quantity">Quantity: 1</span>
-            </div>
-        </div>
-        <div class="total">Total: 1299лв.</div>
-        <a href="#" class="btn">Checkout</a>
-    </div>
+		<div class="shopping-cart">
+			<div class="box">
+				<i class="fas fa-trash"></i>
+				<img src="/images/acer.png" />
+				<div class="content">
+					<h3>ACER NITRO-5</h3>
+					<span class="price">1299лв.</span><br />
+					<span class="quantity">Quantity: 1</span>
+				</div>
+			</div>
+			<div class="total">Total: 1299лв.</div>
+			<a href="#" class="btn">Checkout</a>
+		</div>
 
-    <form action="" class="login">
-        <h3>LogIn</h3>
-        <input type="email" placeholder="Enter email..." class="box"/>
-        <input type="password" placeholder="Enter password..." class="box"/>
-        <p>Forgot your password? <a href="#">Click Here</a></p>
-        <p>Don't have an account<a href="/auth/register">Create Now</a></p>
-        <input type="submit" value="Login Now" class="btn"/>
-    </form>
+		<form sec:authorize="isAnonymous()" th:action="@{/auth/login}" th:method="POST" class="login">
+			<h3>LogIn</h3>
+			<input type="email" name="email" placeholder="Enter email..." class="box" />
+			<input type="password" name="password" placeholder="Enter password..." class="box" />
+			<p>Forgot your password? <a href="#">Click Here</a></p>
+			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
+			<input type="submit" value="Login Now" class="btn" />
+		</form>
+		<li sec:authorize="isAuthenticated()" style="float: right;">
+			<form th:method="POST" th:action="@{/logout}">
+				<input type="submit" value="Logout">
+			</form>
+	</header>
 
-</header>
+	<section class="home" id="home">
+		<div class="content">
+			<h3>The latest and <span>most advanced</span>technologies on the market</h3>
+			<p>A wide range of computers, laptops, monitors and all kinds of accessories for every young person.</p>
+			<a href="#" class="btn">Shop Now</a>
+		</div>
+	</section>
 
-<section class="home" id="home">
-    <div class="content">
-        <h3>The latest and <span>most advanced</span>technologies on the market</h3>
-        <p>A wide range of computers, laptops, monitors and all kinds of accessories for every young person.</p>
-        <a href="#" class="btn">Shop Now</a>
-    </div>
-</section>
+	<section class="features" id="features">
+		<h1 class="heading">Our <span>Features</span></h1>
+		<div class="boxContainer">
+			<div class="box">
+				<img src="../static/images/courier.png" alt="" width="200" height="170" />
+				<h3>Free delivery</h3>
+				<p>Free shipping anywhere in the world!</p>
+				<a href="#" class="btn">Read More</a>
+			</div>
+			<div class="box">
+				<img src="../static/images/technical.png" alt="" width="220" height="180" />
+				<h3>Free consultation</h3>
+				<p>Free on-site or online consultation!</p>
+				<a href="#" class="btn">Read More</a>
+			</div>
+			<div class="box">
+				<img src="../static/images/technology_medical.png" alt="" width="200" height="180" />
+				<h3>Free repair</h3>
+				<p>Free repair for two years!</p>
+				<a href="#" class="btn">Read More</a>
+			</div>
+		</div>
+	</section>
 
-<section class="features" id="features">
-    <h1 class="heading">Our <span>Features</span></h1>
-    <div class="boxContainer">
-        <div class="box">
-            <img src="../static/image/courier.png" alt="" width="200" height="170"/>
-            <h3>Free delivery</h3>
-            <p>Free shipping anywhere in the world!</p>
-            <a href="#" class="btn">Read More</a>
-        </div>
-        <div class="box">
-            <img src="../static/image/technical.png" alt=""  width="220" height="180"/>
-            <h3>Free consultation</h3>
-            <p>Free on-site or online consultation!</p>
-            <a href="#" class="btn">Read More</a>
-        </div>
-        <div class="box">
-            <img src="../static/image/technology_medical.png" alt="" width="200" height="180"/>
-            <h3>Free repair</h3>
-            <p>Free repair for two years!</p>
-            <a href="#" class="btn">Read More</a>
-        </div>
-    </div>
-</section>
+	<section class="product" id="product">
+		<h1 class="heading">Our<span>Product</span></h1>
+		<div class="swiper productSlide">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide box" th:each="product : ${products}" th:object="${product}">
+					<img th:src="*{image}" />
+					<h3 th:text="*{productName}"></h3>
+					<div class="price" th:text="*{price}"></div>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+					<a th:href="@{/add/{id}(id=*{id})}" class="btn">Add to cart</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section class="product" id="product">
-    <h1 class="heading">Our<span>Product</span></h1>
-    <div class="swiper productSlide">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide box">
-                <img src="../static/image/acer.png"/>
-                <h3>ACER NITRO 5</h3>
-                <div class="price">1299лв.</div>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">Add to cart</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="../static/image/asus.png"/>
-                <h3>ASUS VIVOBOOK</h3>
-                <div class="price">1399лв.</div>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">Add to cart</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="../static/image/huaweiP50.png"/>
-                <h3>ACER NITRO 5</h3>
-                <div class="price">1299лв.</div>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">Add to cart</a>
-            </div>
-        </div>
-    </div>
-</section>
+	<section class="review" id="review">
+		<h1 class="heading">Customer's <span>review</span></h1>
+		<div class="swiper reviewSlide">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide box">
+					<img src="../static/images/woman.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Nadq Todorova</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star-half-alt"></i>
+					</div>
+				</div>
+				<div class="swiper-slide box">
+					<img src="../static/images/man.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Kalin Ivanov</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="swiper-slide box">
+					<img src="../static/images/man1.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Strahil Krustev</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="swiper-slide box">
+					<img src="../static/image/dev.jpg" alt="" />
+					<p>Great products at low prices. The team is at the level. Super happy and would buy from them
+						again.</p>
+					<h3>Ivana Blagoeva</h3>
+					<div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section class="review" id="review">
-    <h1 class="heading">Customer's <span>review</span></h1>
-    <div class="swiper reviewSlide">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide box">
-                <img src="../static/image/woman.jpg" alt=""/>
-                <p>Great products at low prices. The team is at the level. Super happy and would buy from them
-                    again.</p>
-                <h3>Nadq Todorova</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-            <div class="swiper-slide box">
-                <img src="../static/image/man.jpg" alt=""/>
-                <p>Great products at low prices. The team is at the level. Super happy and would buy from them
-                    again.</p>
-                <h3>Kalin Ivanov</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-            </div>
-            <div class="swiper-slide box">
-                <img src="../static/image/man1.jpg" alt=""/>
-                <p>Great products at low prices. The team is at the level. Super happy and would buy from them
-                    again.</p>
-                <h3>Strahil Krustev</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-            </div>
-            <div class="swiper-slide box">
-                <img src="../static/image/dev.jpg" alt=""/>
-                <p>Great products at low prices. The team is at the level. Super happy and would buy from them
-                    again.</p>
-                <h3>Ivana Blagoeva</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+	<section class="technology">
+		<div class="boxContainer">
+			<div class="box">
+				<h3>Shopping</h3>
+				<div class="share">
+					<a href="#" class="fab fa-facebook-f"></a>
+					<a href="#" class="fab fa-twitter"></a>
+					<a href="#" class="fab fa-instagram"></a>
+					<a href="#" class="fab fa-linkedin"></a>
+				</div>
+			</div>
 
-<section class="technology">
-    <div class="boxContainer">
-        <div class="box">
-            <h3>Shopping</h3>
-            <div class="share">
-                <a href="#" class="fab fa-facebook-f"></a>
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-instagram"></a>
-                <a href="#" class="fab fa-linkedin"></a>
-            </div>
-        </div>
+			<div class="box">
+				<h3>Contact</h3>
+				<a href="#" class="links"><i class="fas fa-phone"></i>092/ 000 001</a>
+				<a href="#" class="links"><i class="fas fa-phone"></i>096/ 000 001</a>
+				<a href="#" class="links"><i class="fas fa-envelope"></i>shopping_123@gmail.com</a>
+				<a href="#" class="links"><i class="fas fa-map-marker-alt"></i>Vratsa, Bulgaria - bul. "Hristo Botev"
+					31</a>
+				<a href="#" class="links"><i class="fas fa-map-marker-alt"></i>Montana, Bulgaria - bul. "Treti Mart"
+					15</a>
+			</div>
 
-        <div class="box">
-            <h3>Contact</h3>
-            <a href="#" class="links"><i class="fas fa-phone"></i>092/ 000 001</a>
-            <a href="#" class="links"><i class="fas fa-phone"></i>096/ 000 001</a>
-            <a href="#" class="links"><i class="fas fa-envelope"></i>shopping_123@gmail.com</a>
-            <a href="#" class="links"><i class="fas fa-map-marker-alt"></i>Vratsa, Bulgaria - bul. "Hristo Botev" 31</a>
-            <a href="#" class="links"><i class="fas fa-map-marker-alt"></i>Montana, Bulgaria - bul. "Treti Mart" 15</a>
-        </div>
+			<div class="box">
+				<h3>Subscribe</h3>
+				<input type="email" placeholder="Your emil..." class="email" />
+				<input type="submit" value="subscribe" class="btn" />
+				<img src="../static/images/card.png" class="payment-img" alt="" />
+			</div>
+		</div>
+	</section>
 
-        <div class="box">
-            <h3>Subscribe</h3>
-            <input type="email" placeholder="Your emil..." class="email" />
-            <input type="submit" value="subscribe" class="btn" />
-            <img src="../static/image/card.png" class="payment-img" alt="" />
-        </div>
-    </div>
-</section>
-
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script type="text/javascript" src="../js/shopping.js"></script>
-<script type="text/javascript" src="../static/js/shopping.js"></script>
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+	<script type="text/javascript" src="../js/shopping.js"></script>
+	<script type="text/javascript" src="../static/js/shopping.js"></script>
 </body>
 
 </html>

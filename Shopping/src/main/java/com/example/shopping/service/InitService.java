@@ -16,14 +16,14 @@ public class InitService {
 	}
 
 	public void initDb() {
-		ProductEntity productEntity1 = new ProductEntity("ASUS VIVOBOOK", BigDecimal.valueOf(1399.0), "Good laptop",
-				10);
+		ProductEntity productEntity1 = new ProductEntity("ASUS VIVOBOOK", BigDecimal.valueOf(1399.0), "Good laptop", 10,
+				"/images/asus.png");
 
 		ProductEntity productEntity2 = new ProductEntity("Acer NITRO 5", BigDecimal.valueOf(1299.0), "Good smartphone",
-				15);
+				15, "/images/acer.png");
 
 		ProductEntity productEntity3 = new ProductEntity("ASUS VIVOBOOK 5 ", BigDecimal.valueOf(2000.0), "Good laptop",
-				14);
+				14, "/images/huaweiP50.png");
 
 		if (productRepository.count() == 0) {
 			productRepository.save(productEntity1);

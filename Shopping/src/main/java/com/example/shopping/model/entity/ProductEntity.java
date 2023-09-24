@@ -23,15 +23,19 @@ public class ProductEntity {
 	@Column
 	private int quantity;
 
+	@Column
+	private String image;
+
 	public ProductEntity() {
 
 	}
 
-	public ProductEntity(String productName, BigDecimal price, String description, int quantity) {
+	public ProductEntity(String productName, BigDecimal price, String description, int quantity, String image) {
 		this.productName = productName;
 		this.price = price;
 		this.description = description;
 		this.quantity = quantity;
+		this.image = image;
 	}
 
 	public Long getId() {
@@ -67,6 +71,24 @@ public class ProductEntity {
 
 	public ProductEntity setQuantity(int quantity) {
 		this.quantity = quantity;
+		return this;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public ProductEntity setDescription(String description) {
+		this.description = description;
+		return this;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public ProductEntity setImage(String image) {
+		this.image = image;
 		return this;
 	}
 
