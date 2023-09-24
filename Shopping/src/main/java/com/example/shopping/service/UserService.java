@@ -22,7 +22,8 @@ public class UserService {
 		UserEntity user = new UserEntity();
 		
 		user.setEmail(userRegisterForm.getEmail())
-			.setPassword(passwordEncoder.encode(userRegisterForm.getPassword()));
+			.setPassword(passwordEncoder.encode(userRegisterForm.getPassword()))
+			.setPhoneNumber(userRegisterForm.getPhoneNumber());
 		
 		this.userRepository.save(user);
 	}
