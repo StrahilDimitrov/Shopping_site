@@ -34,10 +34,21 @@ public class ShoppingCartService {
 
 		cart = shoppingCartRepository.save(cart);
 
-		ProductEntity product = productRepository.findById(id).orElse(null);
+		ProductEntity product = productRepository.findById(id).get();
 
-		ShoppingItemEntity shoppingItem = new ShoppingItemEntity();
-		shoppingItem.setProduct(product).setCart(cart).setQuantity(1);
+		ShoppingItemEntity shoppingItem = this.shoppingItemRepository.findAllByProduct(product).orElse(null);
+
+		if (shoppingItem == null) {
+			shoppingItem = new ShoppingItemEntity();
+			shoppingItem.setProduct(product).setCart(cart).setQuantity(1);
+
+		} else if (shoppingItem.getCart().getId() == cart.getId()) {
+			shoppingItem.setQuantity(shoppingItem.getQuantity() + 1);
+
+		} else {
+			shoppingItem = new ShoppingItemEntity().setProduct(product).setCart(cart).setQuantity(1);
+
+		}
 
 		shoppingItemRepository.save(shoppingItem);
 	}

@@ -45,11 +45,13 @@
 				<img th:src="*{image}" />
 				<div class="content">
 					<h3 th:text="*{productName}"></h3>
-					<span class="price" th:text="*{price}"></span><br />
+					<span class="price" th:text="*{amount}"></span><br />
 					<span class="quantity" th:text="*{quantity}"></span>
 				</div>
 			</div>
-			<div class="total"></div>
+			<div class="total">
+				<h3 th:text="'Total: ' + ${total}"></h3>
+			</div>
 			<a href="#" class="btn">Checkout</a>
 		</div>
 

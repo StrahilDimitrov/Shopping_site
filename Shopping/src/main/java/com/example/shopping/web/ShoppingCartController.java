@@ -48,7 +48,7 @@ public class ShoppingCartController {
 
 	@GetMapping("/delete/{id}")
 	public ModelAndView deleteItemById(@PathVariable("id") Long id, ModelAndView modelAndView) {
-		this.shoppingItemService.deleteItemById(id);
+		this.shoppingItemService.removeItemById(id);
 
 		modelAndView.setViewName("redirect:/");
 

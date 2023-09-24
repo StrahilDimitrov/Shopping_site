@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.shopping.model.dto.ShoppingCartItemDto;
 import com.example.shopping.model.entity.ShoppingCartEntity;
+import com.example.shopping.model.entity.ShoppingItemEntity;
 import com.example.shopping.model.entity.UserEntity;
 import com.example.shopping.repository.ShoppingCartRepository;
 import com.example.shopping.repository.ShoppingItemRepository;
@@ -35,8 +36,15 @@ public class ShoppingItemService {
 		return items;
 	}
 
-	public void deleteItemById(Long id) {
-		this.itemRepository.deleteById(id);
+	public void removeItemById(Long id) {
+		ShoppingItemEntity item = this.itemRepository.findById(id).get();
 
+		if (item.getQuantity() > 1) {
+			item.setQuantity(item.getQuantity() - 1);
+			this.itemRepository.save(item);
+		
+		} else {
+			this.itemRepository.deleteById(id);
+		}
 	}
 }

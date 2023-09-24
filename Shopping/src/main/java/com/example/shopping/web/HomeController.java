@@ -1,5 +1,6 @@
 package com.example.shopping.web;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,13 @@ public class HomeController {
 			cartItems = shoppingItemService.getAllItemsByUser(user.getUsername());
 		}
 
+		BigDecimal total = new BigDecimal(0);
+		
+		for (ShoppingCartItemDto item : cartItems) {
+			total = total.add(item.getAmount());
+		}
+
+		modelAndView.addObject("total", total);
 		modelAndView.addObject("cartItems", cartItems);
 		modelAndView.addObject("products", products);
 		modelAndView.setViewName("Shopping");

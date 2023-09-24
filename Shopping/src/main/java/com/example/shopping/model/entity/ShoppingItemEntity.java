@@ -1,14 +1,11 @@
 package com.example.shopping.model.entity;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,7 +15,7 @@ public class ShoppingItemEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne
+	@ManyToOne
 	private ProductEntity product;
 
 	@ManyToOne
@@ -27,11 +24,15 @@ public class ShoppingItemEntity {
 	@Column
 	private int quantity;
 
-	@Column
-	private BigDecimal amount;
 
 	public ShoppingItemEntity() {
+		
+	}
 
+	public ShoppingItemEntity(ProductEntity product, ShoppingCartEntity cart, int quantity) {
+		this.product = product;
+		this.cart = cart;
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
@@ -70,13 +71,5 @@ public class ShoppingItemEntity {
 		return this;
 	}
 
-	public BigDecimal getAmount() {
-		return amount;
-	}
-
-	public ShoppingItemEntity setAmount(BigDecimal amount) {
-		this.amount = amount;
-		return this;
-	}
 
 }

@@ -15,6 +15,8 @@ public class ShoppingCartItemDto {
 
 	private int quantity;
 
+	private BigDecimal amount;
+
 	public ShoppingCartItemDto() {
 
 	}
@@ -68,15 +70,24 @@ public class ShoppingCartItemDto {
 
 	public ShoppingCartItemDto setQuantity(int quantity) {
 		this.quantity = quantity;
+		this.amount = price.multiply(BigDecimal.valueOf(quantity));
+		
 		return this;
 	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
 
 	public static ShoppingCartItemDto mapToShoppingItemDto(ShoppingItemEntity shoppingItemEntity) {
 		ShoppingCartItemDto shoppingItemDto = new ShoppingCartItemDto();
 
-		shoppingItemDto.setId(shoppingItemEntity.getId()).setImage(shoppingItemEntity.getProduct().getImage())
-				.setPrice(shoppingItemEntity.getProduct().getPrice())
-				.setProductName(shoppingItemEntity.getProduct().getProductName());
+		shoppingItemDto.setId(shoppingItemEntity.getId())
+			.setImage(shoppingItemEntity.getProduct().getImage())
+			.setPrice(shoppingItemEntity.getProduct().getPrice())
+			.setProductName(shoppingItemEntity.getProduct().getProductName())
+			.setQuantity(shoppingItemEntity.getQuantity());
 
 		return shoppingItemDto;
 	}
