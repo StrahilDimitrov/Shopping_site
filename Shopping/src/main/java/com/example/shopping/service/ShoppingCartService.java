@@ -1,6 +1,7 @@
 package com.example.shopping.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shopping.model.entity.ProductEntity;
 import com.example.shopping.model.entity.ShoppingCartEntity;
@@ -40,10 +41,11 @@ public class ShoppingCartService {
 
 		shoppingItemRepository.save(shoppingItem);
 	}
-	
+
+	@Transactional
 	public void deleteCart(String email) {
 		UserEntity user = userRepository.findByEmail(email).get();
 		this.shoppingCartRepository.deleteByUser(user);
-		
+
 	}
 }

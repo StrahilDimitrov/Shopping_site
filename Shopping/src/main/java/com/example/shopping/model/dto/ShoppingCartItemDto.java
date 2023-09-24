@@ -13,14 +13,17 @@ public class ShoppingCartItemDto {
 
 	private String image;
 
+	private int quantity;
+
 	public ShoppingCartItemDto() {
 
 	}
 
-	public ShoppingCartItemDto(String productName, BigDecimal price, String image) {
+	public ShoppingCartItemDto(String productName, BigDecimal price, String image, int quantity) {
 		this.productName = productName;
 		this.price = price;
 		this.image = image;
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
@@ -59,13 +62,21 @@ public class ShoppingCartItemDto {
 		return this;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public ShoppingCartItemDto setQuantity(int quantity) {
+		this.quantity = quantity;
+		return this;
+	}
+
 	public static ShoppingCartItemDto mapToShoppingItemDto(ShoppingItemEntity shoppingItemEntity) {
 		ShoppingCartItemDto shoppingItemDto = new ShoppingCartItemDto();
 
-		shoppingItemDto.setId(shoppingItemEntity.getId())
-			.setImage(shoppingItemEntity.getProduct().getImage())
-			.setPrice(shoppingItemEntity.getProduct().getPrice())
-			.setProductName(shoppingItemEntity.getProduct().getProductName());
+		shoppingItemDto.setId(shoppingItemEntity.getId()).setImage(shoppingItemEntity.getProduct().getImage())
+				.setPrice(shoppingItemEntity.getProduct().getPrice())
+				.setProductName(shoppingItemEntity.getProduct().getProductName());
 
 		return shoppingItemDto;
 	}

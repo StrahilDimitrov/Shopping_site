@@ -40,16 +40,16 @@
 		</form>
 
 		<div class="shopping-cart">
-			<div class="box">
-				<i class="fas fa-trash"></i>
-				<img src="/images/acer.png" />
+			<div class="box" th:each="item : ${cartItems}" th:object="${item}">
+				<a th:href="@{/delete/{id}(id=*{id})}" class="fas fa-trash"></a>
+				<img th:src="*{image}" />
 				<div class="content">
-					<h3>ACER NITRO-5</h3>
-					<span class="price">1299лв.</span><br />
-					<span class="quantity">Quantity: 1</span>
+					<h3 th:text="*{productName}"></h3>
+					<span class="price" th:text="*{price}"></span><br />
+					<span class="quantity" th:text="*{quantity}"></span>
 				</div>
 			</div>
-			<div class="total">Total: 1299лв.</div>
+			<div class="total"></div>
 			<a href="#" class="btn">Checkout</a>
 		</div>
 
@@ -79,19 +79,19 @@
 		<h1 class="heading">Our <span>Features</span></h1>
 		<div class="boxContainer">
 			<div class="box">
-				<img src="../static/images/courier.png" alt="" width="200" height="170" />
+				<img src="images/courier.png" alt="" width="200" height="170" />
 				<h3>Free delivery</h3>
 				<p>Free shipping anywhere in the world!</p>
 				<a href="#" class="btn">Read More</a>
 			</div>
 			<div class="box">
-				<img src="../static/images/technical.png" alt="" width="220" height="180" />
+				<img src="images/technical.png" alt="" width="220" height="180" />
 				<h3>Free consultation</h3>
 				<p>Free on-site or online consultation!</p>
 				<a href="#" class="btn">Read More</a>
 			</div>
 			<div class="box">
-				<img src="../static/images/technology_medical.png" alt="" width="200" height="180" />
+				<img src="images/technology_medical.png" alt="" width="200" height="180" />
 				<h3>Free repair</h3>
 				<p>Free repair for two years!</p>
 				<a href="#" class="btn">Read More</a>

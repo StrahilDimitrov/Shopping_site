@@ -21,7 +21,7 @@ public class SecurityConfiguration {
 				.authorizeHttpRequests(request -> request
 						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**")
-						.permitAll().requestMatchers("/deleteCart").authenticated())
+						.permitAll().requestMatchers("/deleteCart", "/delete/**").authenticated())
 				.formLogin(
 						login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
 								.defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))

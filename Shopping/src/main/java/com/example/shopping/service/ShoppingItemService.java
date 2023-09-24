@@ -18,7 +18,8 @@ public class ShoppingItemService {
 	private final ShoppingCartRepository shoppingCartRepository;
 	private final UserRepository userRepository;
 
-	public ShoppingItemService(ShoppingItemRepository itemRepository, UserRepository userRepository, ShoppingCartRepository shoppingCartRepository) {
+	public ShoppingItemService(ShoppingItemRepository itemRepository, UserRepository userRepository,
+			ShoppingCartRepository shoppingCartRepository) {
 		this.itemRepository = itemRepository;
 		this.shoppingCartRepository = shoppingCartRepository;
 		this.userRepository = userRepository;
@@ -29,10 +30,13 @@ public class ShoppingItemService {
 		ShoppingCartEntity cart = this.shoppingCartRepository.findByUser(user).orElse(null);
 
 		List<ShoppingCartItemDto> items = this.itemRepository.findAllByCart(cart).get().stream()
-				.map(ShoppingCartItemDto::mapToShoppingItemDto)
-				.collect(Collectors.toList());
-		
+				.map(ShoppingCartItemDto::mapToShoppingItemDto).collect(Collectors.toList());
+
 		return items;
 	}
 
+	public void deleteItemById(Long id) {
+		this.itemRepository.deleteById(id);
+
+	}
 }
