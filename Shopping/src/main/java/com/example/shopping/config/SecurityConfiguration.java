@@ -20,9 +20,11 @@ public class SecurityConfiguration {
 		httpSecurity
 				.authorizeHttpRequests(request -> request
 						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**").permitAll())
-				.formLogin(login -> login.loginPage("/auth/login").usernameParameter("email")
-						.passwordParameter("password").defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
+						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**")
+						.permitAll().requestMatchers("/deleteCart").authenticated())
+				.formLogin(
+						login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
+								.defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
 				.logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true));
 
 		return httpSecurity.build();

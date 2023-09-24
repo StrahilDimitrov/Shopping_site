@@ -3,6 +3,7 @@ package com.example.shopping.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +23,12 @@ public class ShoppingCartEntity {
 	@OneToOne
 	private UserEntity user;
 
-	@OneToMany(mappedBy = "cart", targetEntity = ShoppingItemEntity.class)
+	@OneToMany(mappedBy = "cart", targetEntity = ShoppingItemEntity.class, cascade = CascadeType.ALL)
 	private List<ShoppingItemEntity> items;
+
+	public ShoppingCartEntity(UserEntity user) {
+		this.user = user;
+	}
 
 	public ShoppingCartEntity() {
 		this.items = new ArrayList<>();
