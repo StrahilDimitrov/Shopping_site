@@ -37,7 +37,7 @@ public class ShoppingCartService {
 		ProductEntity product = productRepository.findById(id).orElse(null);
 
 		ShoppingItemEntity shoppingItem = new ShoppingItemEntity();
-		shoppingItem.setProduct(product).setCart(cart);
+		shoppingItem.setProduct(product).setCart(cart).setQuantity(1);
 
 		shoppingItemRepository.save(shoppingItem);
 	}
