@@ -2,7 +2,13 @@ package com.example.shopping.model.entity;
 
 import java.math.BigDecimal;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "products")
@@ -26,16 +32,21 @@ public class ProductEntity {
 	@Column
 	private String image;
 
+	@ManyToOne
+	private CategoryEntity category;
+
 	public ProductEntity() {
 
 	}
 
-	public ProductEntity(String productName, BigDecimal price, String description, int quantity, String image) {
+	public ProductEntity(String productName, BigDecimal price, String description, int quantity, String image,
+			CategoryEntity category) {
 		this.productName = productName;
 		this.price = price;
 		this.description = description;
 		this.quantity = quantity;
 		this.image = image;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -89,6 +100,15 @@ public class ProductEntity {
 
 	public ProductEntity setImage(String image) {
 		this.image = image;
+		return this;
+	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public ProductEntity setCategory(CategoryEntity category) {
+		this.category = category;
 		return this;
 	}
 
