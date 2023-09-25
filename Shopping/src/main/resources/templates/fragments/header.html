@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<header class="header">
+		<a href="#" class="logo"><img src="../static/images/logo.png" width="120" height="80"></a>
+
+		<nav class="navbar">
+			<a href="#">Home</a>
+			<a href="#">Features</a>
+			<a href="/categories">Categories</a>
+			<a href="#">Review</a>
+			<a href="#">Blogs</a>
+		</nav>
+
+		<div class="icons">
+			<div class="fas fa-bars" id="menu"></div>
+			<div class="fas fa-search" id="search"></div>
+			<div class="fas fa-shopping-cart" id="cart"></div>
+			<div class="fas fa-user" id="user"></div>
+		</div>
+
+		<form action="" class="search-form">
+			<input type="search" id="search-box" placeholder="Search here..." />
+			<label for="search-box" class="fas fa-search"></label>
+		</form>
+
+		<div class="shopping-cart">
+			<div class="box" th:each="item : ${cartItems}" th:object="${item}">
+				<a class="fas fa-trash"></a>
+				<div class="content">
+					<h3 class="name">Laptop</h3>
+					<span class="price">12.99</span><br />
+					<span class="quantity">1</span>
+				</div>
+			</div>
+			<div class="total">
+				<h3 th:text="'Total: ' + ${total}"></h3>
+			</div>
+			<a href="#" class="btn">Checkout</a>
+		</div>
+
+		<form method="post" class="login">
+			<h3>LogIn</h3>
+			<input type="email" name="email" placeholder="Enter email..." class="box" />
+			<input type="password" name="password" placeholder="Enter password..." class="box" />
+			<p>Forgot your password? <a href="#">Click Here</a></p>
+			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
+			<input type="submit" value="Login Now" class="btn" />
+		</form>
+	</header>
+</body>
+
+</html>
