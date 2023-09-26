@@ -1,10 +1,15 @@
 package com.example.shopping.service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.ShoppingCartItemDto;
 import com.example.shopping.model.entity.ShoppingCartEntity;
 import com.example.shopping.model.entity.ShoppingItemEntity;
@@ -42,9 +47,26 @@ public class ShoppingItemService {
 		if (item.getQuantity() > 1) {
 			item.setQuantity(item.getQuantity() - 1);
 			this.itemRepository.save(item);
-		
+
 		} else {
 			this.itemRepository.deleteById(id);
 		}
+	}
+
+	public void loadShoppingCart(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
+		List<ShoppingCartItemDto> cartItems = new ArrayList<>();
+
+		if (user != null) {
+			cartItems = getAllItemsByUser(user.getUsername());
+		}
+
+		BigDecimal total = new BigDecimal(0);
+
+		for (ShoppingCartItemDto item : cartItems) {
+			total = total.add(item.getAmount());
+		}
+
+		modelAndView.addObject("total", total);
+		modelAndView.addObject("cartItems", cartItems);
 	}
 }

@@ -7,11 +7,11 @@
 </head>
 
 <body>
-	<header class="header">
-		<a href="#" class="logo"><img src="../static/images/logo.png" width="120" height="80"></a>
+	<header class="header" th:fragment="header">
+		<a href="#" class="logo"><img src="/images/logo.png" width="120" height="80"></a>
 
 		<nav class="navbar">
-			<a href="#">Home</a>
+			<a href="/">Home</a>
 			<a href="#">Features</a>
 			<a href="/categories">Categories</a>
 			<a href="#">Review</a>
@@ -32,11 +32,12 @@
 
 		<div class="shopping-cart">
 			<div class="box" th:each="item : ${cartItems}" th:object="${item}">
-				<a class="fas fa-trash"></a>
+				<a th:href="@{/delete/{id}(id=*{id})}" class="fas fa-trash"></a>
+				<img th:src="*{image}" />
 				<div class="content">
-					<h3 class="name">Laptop</h3>
-					<span class="price">12.99</span><br />
-					<span class="quantity">1</span>
+					<h3 th:text="*{productName}"></h3>
+					<span class="price" th:text="*{amount}"></span><br />
+					<span class="quantity" th:text="*{quantity}"></span>
 				</div>
 			</div>
 			<div class="total">
@@ -45,7 +46,7 @@
 			<a href="#" class="btn">Checkout</a>
 		</div>
 
-		<form method="post" class="login">
+		<form sec:authorize="isAnonymous()" th:action="@{/auth/login}" th:method="POST" class="login">
 			<h3>LogIn</h3>
 			<input type="email" name="email" placeholder="Enter email..." class="box" />
 			<input type="password" name="password" placeholder="Enter password..." class="box" />
@@ -53,6 +54,10 @@
 			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
 			<input type="submit" value="Login Now" class="btn" />
 		</form>
+		<li sec:authorize="isAuthenticated()" style="float: right;">
+			<form th:method="POST" th:action="@{/logout}">
+				<input class="btn" type="submit" value="Logout">
+			</form>
 	</header>
 </body>
 
