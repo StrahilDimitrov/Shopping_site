@@ -33,4 +33,12 @@ public class HomeController {
 
 		return modelAndView;
 	}
+
+	@GetMapping("/aboutUs")
+	public ModelAndView getAboutUs(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
+		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+		modelAndView.setViewName("AboutUs");
+
+		return modelAndView;
+	}
 }
