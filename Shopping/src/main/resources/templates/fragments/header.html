@@ -54,10 +54,11 @@
 			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
 			<input type="submit" value="Login Now" class="btn" />
 		</form>
-		<li sec:authorize="isAuthenticated()" style="float: right;">
+		<div sec:authorize="isAuthenticated()" style="float: right;">
 			<form th:method="POST" th:action="@{/logout}">
 				<input class="btn" type="submit" value="Logout">
 			</form>
+		</div>
 	</header>
 </body>
 
