@@ -20,11 +20,12 @@ public class SecurityConfiguration {
 		httpSecurity.authorizeHttpRequests(request -> request
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**").permitAll()
-				.requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs").authenticated())
+				.requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout").authenticated())
 				.formLogin(
 						login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
 								.defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
-				.logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true));
+				.logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
+				.rememberMe(me -> me.key("someUniqueKey").tokenValiditySeconds(604800));
 
 		return httpSecurity.build();
 	}

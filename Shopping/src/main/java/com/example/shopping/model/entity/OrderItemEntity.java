@@ -26,6 +26,11 @@ public class OrderItemEntity {
 
 	}
 
+	public OrderItemEntity(ProductEntity product, OrderEntity shoppingOrder) {
+		this.product = product;
+		this.shoppingOrder = shoppingOrder;
+	}
+
 	public Long getId() {
 		return id;
 	}

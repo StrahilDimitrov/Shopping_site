@@ -1,6 +1,7 @@
 package com.example.shopping.model.entity;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -27,7 +28,10 @@ public class OrderEntity {
 	private List<OrderItemEntity> items;
 
 	@Column
-	private LocalDate date;
+	private LocalDateTime date;
+
+	@Column(name = "order_cost")
+	private BigDecimal orderCost;
 
 	public OrderEntity() {
 
@@ -37,32 +41,45 @@ public class OrderEntity {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public OrderEntity setId(Long id) {
 		this.id = id;
+		return this;
 	}
 
 	public UserEntity getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(UserEntity customer) {
+	public OrderEntity setCustomer(UserEntity customer) {
 		this.customer = customer;
+		return this;
 	}
 
 	public List<OrderItemEntity> getItems() {
 		return items;
 	}
 
-	public void setItems(List<OrderItemEntity> items) {
+	public OrderEntity setItems(List<OrderItemEntity> items) {
 		this.items = items;
+		return this;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public OrderEntity setDate(LocalDate date) {
+	public OrderEntity setDate(LocalDateTime date) {
 		this.date = date;
 		return this;
 	}
+
+	public BigDecimal getOrderCost() {
+		return orderCost;
+	}
+
+	public OrderEntity setOrderCost(BigDecimal orderCost) {
+		this.orderCost = orderCost;
+		return this;
+	}
+
 }
