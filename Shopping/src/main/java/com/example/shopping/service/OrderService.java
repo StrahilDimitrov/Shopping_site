@@ -25,13 +25,16 @@ public class OrderService {
 	private final OrderItemRepository orderItemRepository;
 	private final ShoppingCartRepository shoppingCartRepository;
 	private final UserRepository userRepository;
+	private final ShoppingCartService shoppingCartService;
 
 	public OrderService(OrderRepository orderRepository, ShoppingCartRepository shoppingCartRepository,
-			UserRepository userRepository, OrderItemRepository orderItemRepository) {
+			UserRepository userRepository, OrderItemRepository orderItemRepository,
+			ShoppingCartService shoppingCartService) {
 		this.orderRepository = orderRepository;
 		this.orderItemRepository = orderItemRepository;
 		this.shoppingCartRepository = shoppingCartRepository;
 		this.userRepository = userRepository;
+		this.shoppingCartService = shoppingCartService;
 	}
 
 	@Transactional
@@ -46,7 +49,7 @@ public class OrderService {
 		order.setCustomer(user).setDate(LocalDateTime.now()).setOrderCost(total);
 
 		order = this.orderRepository.save(order);
-		
+
 		List<OrderItemEntity> items = new ArrayList<>();
 
 		for (ShoppingItemEntity item : cart.getItems()) {
@@ -54,6 +57,7 @@ public class OrderService {
 		}
 
 		this.orderItemRepository.saveAll(items);
+		// this.shoppingCartService.deleteCart(email);
 
 	}
 
