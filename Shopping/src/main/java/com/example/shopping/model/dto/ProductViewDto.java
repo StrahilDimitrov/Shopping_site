@@ -18,7 +18,6 @@ public class ProductViewDto {
 	}
 
 	public ProductViewDto(Long id, String productName, BigDecimal price, String image) {
-
 		this.id = id;
 		this.productName = productName;
 		this.price = price;

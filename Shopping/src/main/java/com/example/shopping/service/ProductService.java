@@ -17,12 +17,20 @@ public class ProductService {
 	}
 
 	public List<ProductViewDto> getAllProducts() {
-		List<ProductViewDto> products = this.productRepository.findAll()
+		List<ProductViewDto> products = this.productRepository.findAll().stream().map(ProductViewDto::mapToProductDto)
+				.collect(Collectors.toList());
+
+		return products;
+	}
+
+	public List<ProductViewDto> search(String prod) {
+		List<ProductViewDto> products = this.productRepository.search(prod).orElse(null)
 				.stream()
 				.map(ProductViewDto::mapToProductDto)
-				.collect(Collectors.toList());
+				.toList();
 		
 		return products;
+
 	}
 
 }
