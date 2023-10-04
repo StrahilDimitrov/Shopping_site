@@ -23,7 +23,7 @@ public class SecurityConfiguration {
 						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**")
 						.permitAll()
 						.requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout",
-								"/products/**")
+								"/products/**", "/reviews")
 						.authenticated())
 				.formLogin(
 						login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")

@@ -27,7 +27,7 @@ public class ShoppingCartService {
 		this.productRepository = productRepository;
 	}
 
-	public void addToCart(Long id, String email) {
+	public String addToCart(Long id, String email) {
 		UserEntity user = userRepository.findByEmail(email).get();
 
 		ShoppingCartEntity cart = shoppingCartRepository.findByUser(user).orElse(new ShoppingCartEntity(user));
@@ -51,6 +51,8 @@ public class ShoppingCartService {
 		}
 
 		shoppingItemRepository.save(shoppingItem);
+		
+		return product.getCategory().getName().name();
 	}
 
 	@Transactional

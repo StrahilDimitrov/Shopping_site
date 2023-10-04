@@ -23,11 +23,13 @@ public class ShoppingCartController {
 	@GetMapping("/add/{id}")
 	public ModelAndView addItem(@PathVariable("id") Long id, @AuthenticationPrincipal ApplicationUserDetails user,
 			ModelAndView modelAndView) {
+		String category = "";
+		
 		if (user != null) {
-			this.shoppingCartService.addToCart(id, user.getUsername());
+			category = this.shoppingCartService.addToCart(id, user.getUsername());
 		}
 
-		modelAndView.setViewName("redirect:/");
+		modelAndView.setViewName("redirect:/products/" + category.toLowerCase());
 
 		return modelAndView;
 
@@ -35,7 +37,6 @@ public class ShoppingCartController {
 
 	@GetMapping("/deleteCart")
 	public ModelAndView deleteCart(@AuthenticationPrincipal ApplicationUserDetails user, ModelAndView modelAndView) {
-
 		if (user != null) {
 			this.shoppingCartService.deleteCart(user.getUsername());
 		}

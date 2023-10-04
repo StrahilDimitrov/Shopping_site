@@ -49,28 +49,61 @@
 	</section>
 
 	<section class="product" id="product">
-		<h1 class="heading">Our<span>Product</span></h1>
+		<h1 class="heading">Our<span>Categories</span></h1>
 		<div class="swiper productSlide">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide box" th:each="product : ${products}" th:object="${product}">
-					<img th:src="*{image}" />
-					<h3 th:text="*{productName}"></h3>
-					<div class="price" th:text="*{price}"></div>
-					<div class="stars">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-					</div>
-					<a th:href="@{/add/{id}(id=*{id})}" class="btn">Add to cart</a>
+				<div class="swiper-slide box">
+					<img src="/images/computer.png" />
+					<h3>Computer</h3>
+					<a href="/products/computers" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/phone.png" />
+					<h3>Phone</h3>
+					<a href="#" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/smart_watch.png" />
+					<h3>Smart-watch</h3>
+					<a href="#" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/tablet.png" />
+					<h3>Tablet</h3>
+					<a href="#" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/acer.png" />
+					<h3>Laptop</h3>
+					<a href="#" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/playstation.png" />
+					<h3>Playstation</h3>
+					<a href="#" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/monitor.png" />
+					<h3>Monitor</h3>
+					<a href="#" class="btn">Look More</a>
+				</div>
+
+				<div class="swiper-slide box">
+					<img src="/images/usb-flash.png" />
+					<h3>USB - Flash</h3>
+					<a href="#" class="btn">Look More</a>
 				</div>
 			</div>
-		</div>
 	</section>
 
 	<section class="review" id="review">
-		<h1 class="heading">Customer's <span>review</span></h1>
+		<h1 class="heading">Customer's <span>reviews</span></h1>
 		<div class="swiper reviewSlide">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide box">

@@ -43,7 +43,7 @@ public class ProductService {
 				 .map(ProductViewDto::mapToProductDto)
 				 .toList();
 		 
-		return  products;
+		return products;
 	}
 
 }
