@@ -18,14 +18,13 @@ public class SecurityConfiguration {
 	@Bean
 	SecurityFilterChain secFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
-				.authorizeHttpRequests(
-						request -> request.requestMatchers(PathRequest.toStaticResources().atCommonLocations())
-								.permitAll()
-								.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**")
-								.permitAll()
-								.requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout",
-										"/search")
-								.authenticated())
+				.authorizeHttpRequests(request -> request
+						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**")
+						.permitAll()
+						.requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout",
+								"/products/**")
+						.authenticated())
 				.formLogin(
 						login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
 								.defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
