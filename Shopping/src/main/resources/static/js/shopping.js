@@ -60,7 +60,7 @@ var swiper = new Swiper(".productSlide", {
 })
 
 var swiper = new Swiper(".reviewSlide", {
-    loop: false,
+    loop: true,
     spaceBetween: 20,
     autoplay: {
         delay: 7500,
