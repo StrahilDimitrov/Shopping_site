@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Shopping</title>
+    <link rel="icon" type="image/icon" href="/images/logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/computerPage.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <header class="header" th:fragment="header">
+        <a href="#" class="logo"><img src="../static/images/logo.png" width="120" height="80"></a>
+
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/categories">Categories</a>
+            <a href="#">Review</a>
+            <a href="/aboutUs">About Us</a>
+        </nav>
+
+        <div class="icons">
+            <div class="fas fa-bars" id="menu"></div>
+            <div class="fas fa-search" id="search"></div>
+            <div class="fas fa-shopping-cart" id="cart"></div>
+            <div class="fas fa-user" id="user"></div>
+        </div>
+
+        <form th:action="@{/search}" th:method="GET" class="search-form">
+            <input type="search" id="search-box" name="filter" placeholder="Search here..." />
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+            <div class="box" th:each="item : ${cartItems}" th:object="${item}">
+                <a th:href="@{/delete/{id}(id=*{id})}" class="fas fa-trash"></a>
+                <img th:src="*{image}" />
+                <div class="content">
+                    <h3 th:text="*{productName}"></h3>
+                    <span class="price" th:text="*{amount}"></span><br />
+                    <span class="quantity" th:text="*{quantity}"></span>
+                </div>
+            </div>
+            <div class="total">
+                <h3 th:text="'Total: ' + ${total}"></h3>
+            </div>
+            <a href="/checkout" class="btn">Checkout</a>
+        </div>
+
+        <form sec:authorize="isAnonymous()" th:action="@{/auth/login}" th:method="POST" class="login">
+            <h3>LogIn</h3>
+            <input type="email" name="email" placeholder="Enter email..." class="box" />
+            <input type="password" name="password" placeholder="Enter password..." class="box" />
+            <p>Forgot your password? <a href="#">Click Here</a></p>
+            <p>Don't have an account<a href="/auth/register">Create Now</a></p>
+            <input type="submit" value="Login Now" class="btn" />
+        </form>
+        <div sec:authorize="isAuthenticated()" style="float: right;">
+        </div>
+    </header>
+
+    <div class="gallery">
+		<div class="productContent">
+			<img src="../static/images/computer Page/comp1.jpg" />
+			<h3>ACER VERITON S2680G</h3>
+            <p>599лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+        <div class="productContent">
+			<img src="../static/images/computer Page/comp4.jpg" />
+			<h3>APPLE MAC MINI</h3>
+            <p>899лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+		<div class="productContent">
+			<img src="../static/images/computer Page/comp2.jpg" />
+			<h3>ACER Nitro N50-640</h3>
+            <p>1 399лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+        <div class="productContent">
+			<img src="../static/images/computer Page/comp5.jpg" />
+			<h3>ASUS G10CE-21403</h3>
+            <p>1 599лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+	</div>
+
+    <div class="gallery-second">
+		<div class="productContent">
+			<img src="../static/images/computer Page/comp3.jpg" />
+			<h3>ACER PREDATOR PO3-630</h3>
+            <p>2 399лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+        <div class="productContent">
+			<img src="../static/images/computer Page/comp6.jpg" />
+			<h3>ASUS ROG Strix G15DK-WB5520</h3>
+            <p>2 199лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+		<div class="productContent">
+			<img src="../static/images/computer Page/comp7.jpg" />
+			<h3>GPLAY OFFICETHON</h3>
+            <p>299лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+        <div class="productContent">
+			<img src="../static/images/computer Page/comp8.jpg" />
+			<h3>LENOVO T540-15ICK</h3>
+            <p>999лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+	</div>
+
+    <div class="gallery-second">
+		<div class="productContent">
+			<img src="../static/images/computer Page/comp9.jpg" />
+			<h3>Dell OptiPlex 7010</h3>
+            <p>1 469лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+        <div class="productContent">
+			<img src="../static/images/computer Page/comp10.jpg" />
+			<h3>HP Z440 Workstation</h3>
+            <p>2 439лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+		<div class="productContent">
+			<img src="../static/images/computer Page/comp11.jpg" />
+			<h3>MSI Cubi N ADL-002EU</h3>
+            <p>359лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+
+        <div class="productContent">
+			<img src="../static/images/computer Page/comp12.jpg" />
+			<h3>GIGABYTE Brix BRR3-4300</h3>
+            <p>419лв.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+			<a href="#" class="btn">Add to cart</a>
+		</div>
+	</div>
+</body>
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="../static/js/shopping.js"></script>
+
+</html>
