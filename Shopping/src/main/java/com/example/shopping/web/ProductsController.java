@@ -27,10 +27,13 @@ public class ProductsController {
 	}
 
 	@GetMapping("/search")
-	public ModelAndView getSearchResult(String filter, ModelAndView modelAndView) {
+	public ModelAndView getSearchResult(String filter, ModelAndView modelAndView,
+			@AuthenticationPrincipal ApplicationUserDetails user) {
 		List<ProductViewDto> products = this.productService.search(filter);
-		modelAndView.addObject("searchResult", products);
-		modelAndView.setViewName("searchPage");
+		
+		addingToView(modelAndView, products);
+		
+		this.shoppingItemService.loadShoppingCart(modelAndView, user);
 
 		return modelAndView;
 	}
@@ -38,12 +41,27 @@ public class ProductsController {
 	@GetMapping("/computers")
 	public ModelAndView getComputers(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
 		List<ProductViewDto> computers = this.productService.getProductsFromCat("Computers");
-		
+
 		this.shoppingItemService.loadShoppingCart(modelAndView, user);
-		
-		modelAndView.addObject("products", computers);
-		modelAndView.setViewName("productPage");
+
+		addingToView(modelAndView, computers);
 
 		return modelAndView;
+	}
+
+	@GetMapping("/phones")
+	public ModelAndView getPhones(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
+		List<ProductViewDto> phones = this.productService.getProductsFromCat("smartphones");
+
+		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+
+		addingToView(modelAndView, phones);
+
+		return modelAndView;
+	}
+
+	private void addingToView(ModelAndView modelAndView, List<ProductViewDto> products) {
+		modelAndView.addObject("products", products);
+		modelAndView.setViewName("productPage");
 	}
 }

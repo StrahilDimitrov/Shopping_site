@@ -1,0 +1,288 @@
+[
+  {
+    "productName": "ASUS VIVOBOOK",
+    "price": 1399.0,
+    "description": "Good laptop",
+    "quantity": 10,
+    "image": "/images/asus.png",
+    "category": {
+      "id": 5,
+      "name": "LAPTOPS"
+    }
+  },
+  {
+    "productName": "Acer NITRO 5",
+    "price": 1299.0,
+    "description": "Good smartphone",
+    "quantity": 15,
+    "image": "/images/acer.png",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "ASUS VIVOBOOK 5",
+    "price": 2000.0,
+    "description": "Good laptop",
+    "quantity": 14,
+    "image": "/images/huaweiP50.png",
+    "category": {
+      "id": 5,
+      "name": "LAPTOPS"
+    }
+  },
+  {
+    "productName": "ACER VERITON S2680G",
+    "price": 599.0,
+    "description": "Good computer",
+    "quantity": 11,
+    "image": "/images/computer Page/comp1.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "APPLE MAC MINI",
+    "price": 899.0,
+    "description": "Good computer",
+    "quantity": 17,
+    "image": "/images/computer Page/comp4.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "ACER Nitro N50-640",
+    "price": 1399.0,
+    "description": "Good computer",
+    "quantity": 12,
+    "image": "/images/computer Page/comp2.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "ASUS G10CE-21403",
+    "price": 1599.0,
+    "description": "Good computer",
+    "quantity": 12,
+    "image": "/images/computer Page/comp5.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "ACER PREDATOR PO3-630",
+    "price": 2399.0,
+    "description": "Good computer",
+    "quantity": 7,
+    "image": "/images/computer Page/comp3.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "ASUS ROG Strix G15DK-WB5520",
+    "price": 2199.0,
+    "description": "Good computer",
+    "quantity": 7,
+    "image": "/images/computer Page/comp6.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "GPLAY OFFICETHON",
+    "price": 599.0,
+    "description": "Good computer",
+    "quantity": 20,
+    "image": "/images/computer Page/comp7.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "LENOVO T540-15ICK",
+    "price": 999.0,
+    "description": "Good computer",
+    "quantity": 15,
+    "image": "/images/computer Page/comp8.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "Dell OptiPlex 7010",
+    "price": 1469.0,
+    "description": "Good computer",
+    "quantity": 10,
+    "image": "/images/computer Page/comp9.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "HP Z440 Workstation",
+    "price": 2439.0,
+    "description": "Good computer",
+    "quantity": 16,
+    "image": "/images/computer Page/comp10.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "MSI Cubi N ADL-002EU",
+    "price": 459.0,
+    "description": "Good computer",
+    "quantity": 12,
+    "image": "/images/computer Page/comp11.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "GIGABYTE Brix BRR3-4300",
+    "price": 499.0,
+    "description": "Good computer",
+    "quantity": 18,
+    "image": "/images/computer Page/comp12.jpg",
+    "category": {
+      "id": 1,
+      "name": "COMPUTERS"
+    }
+  },
+  {
+    "productName": "GSM PANASONIC KX-TU110",
+    "price": 39.0,
+    "description": "Good Smart Phone",
+    "quantity": 18,
+    "image": "/images/phone Page/phone1.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "GSM MYPHONE HALO",
+    "price": 42.0,
+    "description": "Good Smart Phone",
+    "quantity": 15,
+    "image": "/images/phone Page/phone2.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "GSM MYPHONE HALO 3",
+    "price": 51.0,
+    "description": "Good Smart Phone",
+    "quantity": 11,
+    "image": "/images/phone Page/phone3.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "GSM MYPHONE HAMMER PATRIOT",
+    "price": 79.99,
+    "description": "Good Smart Phone",
+    "quantity": 17,
+    "image": "/images/phone Page/phone5.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "NOKIA C21 PLUS",
+    "price": 109.0,
+    "description": "Good Smart Phone",
+    "quantity": 17,
+    "image": "/images/phone Page/phone6.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "XIAOMI REDMI A2",
+    "price": 129.0,
+    "description": "Good Smart Phone",
+    "quantity": 19,
+    "image": "/images/phone Page/phone7.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "MOTOROLA E13",
+    "price": 135.0,
+    "description": "Good Smart Phone",
+    "quantity": 20,
+    "image": "/images/phone Page/phone8.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "POCO C40",
+    "price": 189.0,
+    "description": "Good Smart Phone",
+    "quantity": 20,
+    "image": "/images/phone Page/phone9.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "HUAWEI NOVA 11i",
+    "price": 369.0,
+    "description": "Good Smart Phone",
+    "quantity": 15,
+    "image": "/images/phone Page/phone10.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "APPLE IPHONE 12",
+    "price": 1109.0,
+    "description": "Good Smart Phone",
+    "quantity": 11,
+    "image": "/images/phone Page/phone11.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  },
+  {
+    "productName": "SAMSUNG GALAXY S23 ULTRA",
+    "price": 2099.0,
+    "description": "Good Smart Phone",
+    "quantity": 7,
+    "image": "/images/phone Page/phone12.jpg",
+    "category": {
+      "id": 2,
+      "name": "SMARTPHONES"
+    }
+  }
+]
