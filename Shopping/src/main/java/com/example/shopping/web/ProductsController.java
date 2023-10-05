@@ -42,7 +42,7 @@ public class ProductsController {
 		this.shoppingItemService.loadShoppingCart(modelAndView, user);
 		
 		modelAndView.addObject("products", computers);
-		modelAndView.setViewName("computerPage");
+		modelAndView.setViewName("productPage");
 
 		return modelAndView;
 	}
