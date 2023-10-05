@@ -49,7 +49,7 @@ public class ProductsController {
 		return modelAndView;
 	}
 
-	@GetMapping("/phones")
+	@GetMapping("/smartphones")
 	public ModelAndView getPhones(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
 		List<ProductViewDto> phones = this.productService.getProductsFromCat("smartphones");
 
