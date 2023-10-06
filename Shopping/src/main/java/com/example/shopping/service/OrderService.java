@@ -57,7 +57,7 @@ public class OrderService {
 		}
 
 		this.orderItemRepository.saveAll(items);
-		// this.shoppingCartService.deleteCart(email);
+		this.shoppingCartService.deleteCart(email);
 
 	}
 
