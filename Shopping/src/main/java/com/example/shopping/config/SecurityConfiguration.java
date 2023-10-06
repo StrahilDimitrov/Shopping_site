@@ -20,7 +20,7 @@ public class SecurityConfiguration {
 		httpSecurity
 				.authorizeHttpRequests(request -> request
 						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**")
+						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**", "/api/**")
 						.permitAll()
 						.requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout",
 								"/products/**", "/reviews")
