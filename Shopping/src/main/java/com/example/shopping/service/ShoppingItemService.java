@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.shopping.model.dto.ApplicationUserDetails;
+import com.example.shopping.model.dto.ShoppingCartDto;
 import com.example.shopping.model.dto.ShoppingCartItemDto;
 import com.example.shopping.model.entity.ShoppingCartEntity;
 import com.example.shopping.model.entity.ShoppingItemEntity;
@@ -68,5 +69,23 @@ public class ShoppingItemService {
 
 		modelAndView.addObject("total", total);
 		modelAndView.addObject("cartItems", cartItems);
+	}
+
+	public ShoppingCartDto getShoppingCart(@AuthenticationPrincipal ApplicationUserDetails user) {
+		List<ShoppingCartItemDto> cartItems = new ArrayList<>();
+
+		if (user != null) {
+			cartItems = getAllItemsByUser(user.getUsername());
+		}
+
+		BigDecimal total = new BigDecimal(0);
+
+		for (ShoppingCartItemDto item : cartItems) {
+			total = total.add(item.getAmount());
+		}
+
+		ShoppingCartDto shoppingCartDto = new ShoppingCartDto(cartItems, total);
+
+		return shoppingCartDto;
 	}
 }
