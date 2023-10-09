@@ -40,11 +40,13 @@ public class ProductsController {
 
 	@GetMapping("/computers")
 	public ModelAndView getComputers(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-		List<ProductViewDto> computers = this.productService.getProductsFromCat("Computers");
-
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
-
-		addingToView(modelAndView, computers);
+//		List<ProductViewDto> computers = this.productService.getProductsFromCat("Computers");
+//
+//		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+//
+//		addingToView(modelAndView, computers);
+		
+		modelAndView.setViewName("products");
 
 		return modelAndView;
 	}

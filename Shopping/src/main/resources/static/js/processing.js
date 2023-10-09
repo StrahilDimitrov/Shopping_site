@@ -6,7 +6,7 @@ fetch("http://localhost:8080/api/products")
 
         for (const product of processing) {
             out += `<tr>
-<td><img src="../static/${product.image}"></td>
+<td><img src="${product.image}"></td>
 <td>${product.productName}</td>
 <td>${product.price}</td>
 </tr>`;
