@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 
 <head>
 	<meta charset="UTF-8" />
@@ -16,22 +15,11 @@
 <body>
 
 	<header th:replace="~{fragments/header}"></header>
-
-	<div class="gallery">
-		<div class="productContent" th:each="product : ${products}" th:object="${product}">
-			<img th:src="*{image}" />
-			<h3 th:text="*{productName}"></h3>
-			<p th:text="*{price}"></p>
-			<div class="stars">
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-			</div>
-			<a th:href="@{/add/{id}(id=*{id})}" class="btn">Add to cart</a>
-		</div>
+	<input type="hidden" name="categoryId" id="categoryId" th:value="*{id}">
+	<div class="gallery" id="products">
 	</div>
+
+	<script src="/js/processing.js" type="text/javascript"></script>
 </body>
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
