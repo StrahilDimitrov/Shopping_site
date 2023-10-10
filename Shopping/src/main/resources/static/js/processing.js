@@ -1,15 +1,27 @@
-fetch("http://localhost:8080/api/products")
-    .then(response => response.json())
-    .then(function (processing) {
-        let placeholder = document.querySelector('#info');
-        let out = "";
+const backendLocation = 'http://localhost:8080'
 
-        for (const product of processing) {
-            out += `<tr>
-<td><img src="${product.image}"></td>
-<td>${product.productName}</td>
-<td>${product.price}</td>
-</tr>`;
-        }
-        placeholder.innerHTML = out;
-    })
+let categoryId = document.getElementById("categoryId").getAttribute("value");
+let productSection = document.getElementById("products");
+
+
+fetch("http://localhost:8080/api/product/" + categoryId)
+	.then(response => response.json())
+	.then(element => {
+		element.forEach(product => {
+		let page =`<div class="productContent">
+					  <img src="${product.image}"/>
+					  <h3>${product.productName}</h3>
+					  <p>Price: ${product.price}.лв<p>
+					  <div class="stars">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					  </div>
+					  <a class = "btn" href="/add/${product.id}">Add to cart</a>
+				  </div>`;
+				  
+		productSection.innerHTML += page;
+		})
+	})
