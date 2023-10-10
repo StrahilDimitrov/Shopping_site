@@ -6,25 +6,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.ProductViewDto;
-import com.example.shopping.model.dto.ShoppingCartDto;
+import com.example.shopping.model.entity.CategoryEntity;
+import com.example.shopping.service.CategoryService;
 import com.example.shopping.service.ProductService;
-import com.example.shopping.service.ShoppingItemService;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class ProductsRestController {
 	private final ProductService productService;
-	private final ShoppingItemService shoppingItemService;
+	private final CategoryService categoryService;
 
-	public ProductsRestController(ProductService productService, ShoppingItemService shoppingItemService) {
+	public ProductsRestController(ProductService productService, CategoryService categoryService) {
 		this.productService = productService;
-		this.shoppingItemService = shoppingItemService;
+		this.categoryService = categoryService;
 	}
 
 	@GetMapping("/products")
@@ -34,19 +35,12 @@ public class ProductsRestController {
 		return ResponseEntity.ok(products);
 	}
 
-	@GetMapping("/computers")
-	public ResponseEntity<Object> getComputers(@AuthenticationPrincipal ApplicationUserDetails user) {
-		List<ProductViewDto> computers = this.productService.getProductsFromCat("Computers");
-		ShoppingCartDto shoppingCart = this.shoppingItemService.getShoppingCart(user);
+	@GetMapping("/product/{id}")
+	public ResponseEntity<List<ProductViewDto>> getComputers(@AuthenticationPrincipal ApplicationUserDetails user,
+			@PathVariable(name = "id") Long id) {
+		CategoryEntity category = this.categoryService.getCategoryById(id);
+		List<ProductViewDto> products = this.productService.getProductsFromCat(category);
 
-		return ResponseEntity.ok(List.of(shoppingCart, computers));
-	}
-
-	@GetMapping("/smartphones")
-	public ResponseEntity<Object> getPhones(@AuthenticationPrincipal ApplicationUserDetails user) {
-		List<ProductViewDto> phones = this.productService.getProductsFromCat("smartphones");
-		ShoppingCartDto shoppingCart = this.shoppingItemService.getShoppingCart(user);
-
-		return ResponseEntity.ok(List.of(shoppingCart, phones));
+		return ResponseEntity.ok(products);
 	}
 }

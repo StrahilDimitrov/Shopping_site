@@ -13,8 +13,12 @@ public class CategoryService {
 	public CategoryService(CategoryRepository categoryRepository) {
 		this.categoryRepository = categoryRepository;
 	}
-	
+
 	public CategoryEntity getCategoryByName(String category) {
 		return this.categoryRepository.findByName(Category.valueOf(category.toUpperCase())).get();
+	}
+
+	public CategoryEntity getCategoryById(Long id) {
+		return this.categoryRepository.findById(id).orElse(null);
 	}
 }

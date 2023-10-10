@@ -34,10 +34,18 @@ public class ProductService {
 
 	}
 
-	public List<ProductViewDto> getProductsFromCat(String categoryName) {
+	public List<ProductViewDto> getProductsFromCatName(String categoryName) {
 		CategoryEntity category = this.categoryService.getCategoryByName(categoryName);
-		
-		 List<ProductViewDto> products = this.productRepository.findAllByCategory(category)
+		 
+		return loadItemsByCategory(category);
+	}
+	
+	public List<ProductViewDto> getProductsFromCat(CategoryEntity category) {
+		 return loadItemsByCategory(category);
+	}
+	
+	private List<ProductViewDto> loadItemsByCategory(CategoryEntity category){
+		List<ProductViewDto> products = this.productRepository.findAllByCategory(category)
 				 .orElseGet(null)
 				 .stream()
 				 .map(ProductViewDto::mapToProductDto)

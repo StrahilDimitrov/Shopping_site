@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,36 +31,27 @@ public class ProductsController {
 	public ModelAndView getSearchResult(String filter, ModelAndView modelAndView,
 			@AuthenticationPrincipal ApplicationUserDetails user) {
 		List<ProductViewDto> products = this.productService.search(filter);
-		
+
 		addingToView(modelAndView, products);
-		
+
 		this.shoppingItemService.loadShoppingCart(modelAndView, user);
 
 		return modelAndView;
 	}
 
-	@GetMapping("/computers")
-	public ModelAndView getComputers(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-//		List<ProductViewDto> computers = this.productService.getProductsFromCat("Computers");
-//
-//		this.shoppingItemService.loadShoppingCart(modelAndView, user);
-//
-//		addingToView(modelAndView, computers);
-		
-		modelAndView.setViewName("products");
+	@GetMapping("/{id}")
+	public ModelAndView getPhones(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
+			@PathVariable(name = "id") Long id) {
+		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+
+		addingToView(modelAndView, id);
 
 		return modelAndView;
 	}
 
-	@GetMapping("/smartphones")
-	public ModelAndView getPhones(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-		List<ProductViewDto> phones = this.productService.getProductsFromCat("smartphones");
-
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
-
-		addingToView(modelAndView, phones);
-
-		return modelAndView;
+	private void addingToView(ModelAndView modelAndView, Long id) {
+		modelAndView.addObject("id", id);
+		modelAndView.setViewName("productPage");
 	}
 
 	private void addingToView(ModelAndView modelAndView, List<ProductViewDto> products) {
