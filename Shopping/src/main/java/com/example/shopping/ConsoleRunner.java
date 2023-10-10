@@ -15,7 +15,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//init.initDb();
+		init.initDb();
 	}
 
 }

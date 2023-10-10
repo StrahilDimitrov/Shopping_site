@@ -27,7 +27,7 @@ public class InitService {
 		this.gson = gson;
 	}
 
-	public void initDb() throws IOException {
+	public void initDb() {
 		if (categoryRepository.count() == 0) {
 			List<CategoryEntity> categories = new ArrayList<>();
 
@@ -37,18 +37,18 @@ public class InitService {
 
 			this.categoryRepository.saveAll(categories);
 		}
+		try (FileReader reader = new FileReader(
+				Path.of("src", "main", "resources", "static", "js", "products.json").toFile())) {
+			ProductEntity[] products = gson.fromJson(reader, ProductEntity[].class);
 
-		FileReader reader = new FileReader(
-				Path.of("src", "main", "resources", "static", "js", "products.json").toFile());
+			reader.close();
 
-		ProductEntity[] products = gson.fromJson(reader, ProductEntity[].class);
-
-		reader.close();
-
-		if (productRepository.count() == 0) {
-			productRepository.saveAll(List.of(products));
+			if (productRepository.count() == 0) {
+				productRepository.saveAll(List.of(products));
+			}
+		} catch (IOException e) {
+			System.out.println("File does't exist!");
 		}
-
 	}
 
 }
