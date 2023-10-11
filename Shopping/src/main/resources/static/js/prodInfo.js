@@ -3,13 +3,18 @@ let productId = document.getElementById("productId").getAttribute("value");
 
 let placeholder = document.getElementById('information');
 
-console.log("asdsdasdasda");
-
 fetch(backendLocation + "api/product/info/" + productId)
 	.then(response => response.json())
 	.then(productInfo => {
 		
 		let out = "";
 
-		console.log(productInfo.productName)
+		out += `<table>
+	<tr>
+	<td class="good"><img src="${productInfo.image}"</td>
+	<td class="good">${productInfo.productName}</td>
+</tr>
+</table>`
+
+		placeholder.innerHTML = out;
 	})
