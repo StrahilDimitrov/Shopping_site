@@ -49,7 +49,7 @@ public class ProductsController {
 		return modelAndView;
 	}
 
-	@GetMapping("info/{id}")
+	@GetMapping("/info/{id}")
 	public ModelAndView getProduct(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
 			@PathVariable(name = "id") Long id) {
 		this.shoppingItemService.loadShoppingCart(modelAndView, user);

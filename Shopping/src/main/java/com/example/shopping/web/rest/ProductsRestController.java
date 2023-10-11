@@ -46,8 +46,7 @@ public class ProductsRestController {
 	}
 
 	@GetMapping("/product/info/{id}")
-	public ResponseEntity<DetailedProductViewDto> getProduct(@AuthenticationPrincipal ApplicationUserDetails user,
-			@PathVariable(name = "id") Long id) {
+	public ResponseEntity<DetailedProductViewDto> getProduct(@PathVariable(name = "id") Long id) {
 		DetailedProductViewDto product = this.productService.getProductById(id);
 
 		return ResponseEntity.ok(product);
