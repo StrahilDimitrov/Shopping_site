@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.example.shopping.model.dto.DetailedProductViewDto;
 import com.example.shopping.model.dto.ProductViewDto;
 import com.example.shopping.model.entity.CategoryEntity;
 import com.example.shopping.repository.ProductRepository;
@@ -36,21 +37,25 @@ public class ProductService {
 
 	public List<ProductViewDto> getProductsFromCatName(String categoryName) {
 		CategoryEntity category = this.categoryService.getCategoryByName(categoryName);
-		 
+
 		return loadItemsByCategory(category);
 	}
-	
+
 	public List<ProductViewDto> getProductsFromCat(CategoryEntity category) {
-		 return loadItemsByCategory(category);
+		return loadItemsByCategory(category);
 	}
-	
-	private List<ProductViewDto> loadItemsByCategory(CategoryEntity category){
-		List<ProductViewDto> products = this.productRepository.findAllByCategory(category)
-				 .orElseGet(null)
-				 .stream()
-				 .map(ProductViewDto::mapToProductDto)
-				 .toList();
-		 
+
+	public DetailedProductViewDto getProductById(Long id) {
+		DetailedProductViewDto product = this.productRepository.findById(id)
+				.map(DetailedProductViewDto::mapToDetailedView).get();
+		
+		return product;
+	}
+
+	private List<ProductViewDto> loadItemsByCategory(CategoryEntity category) {
+		List<ProductViewDto> products = this.productRepository.findAllByCategory(category).orElseGet(null).stream()
+				.map(ProductViewDto::mapToProductDto).toList();
+
 		return products;
 	}
 

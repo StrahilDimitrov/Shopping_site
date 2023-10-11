@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.shopping.model.dto.ApplicationUserDetails;
+import com.example.shopping.model.dto.DetailedProductViewDto;
 import com.example.shopping.model.dto.ProductViewDto;
 import com.example.shopping.model.entity.CategoryEntity;
 import com.example.shopping.service.CategoryService;
@@ -36,11 +37,19 @@ public class ProductsRestController {
 	}
 
 	@GetMapping("/product/{id}")
-	public ResponseEntity<List<ProductViewDto>> getComputers(@AuthenticationPrincipal ApplicationUserDetails user,
+	public ResponseEntity<List<ProductViewDto>> getProducts(@AuthenticationPrincipal ApplicationUserDetails user,
 			@PathVariable(name = "id") Long id) {
 		CategoryEntity category = this.categoryService.getCategoryById(id);
 		List<ProductViewDto> products = this.productService.getProductsFromCat(category);
 
 		return ResponseEntity.ok(products);
+	}
+
+	@GetMapping("/product/info/{id}")
+	public ResponseEntity<DetailedProductViewDto> getProduct(@AuthenticationPrincipal ApplicationUserDetails user,
+			@PathVariable(name = "id") Long id) {
+		DetailedProductViewDto product = this.productService.getProductById(id);
+
+		return ResponseEntity.ok(product);
 	}
 }
