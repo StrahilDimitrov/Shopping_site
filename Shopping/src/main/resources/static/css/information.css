@@ -19,10 +19,6 @@ html {
     scroll-padding-top: 7rem;
 }
 
-body {
-    background: #EEE;
-}
-
 .btn {
     margin-top: 1rem;
     display: inline-block;
@@ -100,16 +96,24 @@ body {
     width: 100%;
 }
 
-#information table td, th{
+#information table td,
+th {
     font-size: 20px;
     padding: 20px 20px 20px 20px;
 }
 
-#information .good{
+#information .good {
     background: #DCDCDC;
 }
 
-#information table, td img{
-    width: 540;
-    height: 560px;
+#information table,
+td img {
+    width: 640;
+    height: 660px;
+}
+
+#info td h1 {
+    font-size: 80px;
+    text-align: right;
+    margin-bottom: 20px;
 }

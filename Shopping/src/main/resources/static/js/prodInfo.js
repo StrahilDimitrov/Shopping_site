@@ -6,13 +6,16 @@ let placeholder = document.getElementById('information');
 fetch(backendLocation + "api/product/info/" + productId)
 	.then(response => response.json())
 	.then(productInfo => {
-		
+
 		let out = "";
 
 		out += `<table>
 	<tr>
-	<td class="good"><img src="${productInfo.image}"</td>
-	<td class="good">${productInfo.productName}</td>
+	<td><img src="${productInfo.image}"</td>
+	<td><h1>Офис настолен компютър${productInfo.productName}</h1></td>
+</tr>
+<tr>
+<th>${productInfo.price}</th>
 </tr>
 </table>`
 
