@@ -40,11 +40,22 @@ public class ProductsController {
 	}
 
 	@GetMapping("/{id}")
-	public ModelAndView getPhones(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
+	public ModelAndView getProducts(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
 			@PathVariable(name = "id") Long id) {
 		this.shoppingItemService.loadShoppingCart(modelAndView, user);
 
 		addingToView(modelAndView, id);
+
+		return modelAndView;
+	}
+
+	@GetMapping("info/{id}")
+	public ModelAndView getProduct(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
+			@PathVariable(name = "id") Long id) {
+		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+
+		modelAndView.setViewName("information");
+		modelAndView.addObject("id", id);
 
 		return modelAndView;
 	}
