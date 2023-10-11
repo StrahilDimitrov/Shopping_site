@@ -9,7 +9,7 @@ fetch("http://localhost:8080/api/product/" + categoryId)
 	.then(element => {
 		element.forEach(product => {
 		let page =`<div class="productContent">
-					  <a href="/info/${product.id}"><img src="${product.image}"/></a>
+					  <a href="/products/info/${product.id}"><img src="${product.image}"/></a>
 					  <h3>${product.productName}</h3>
 					  <p>Price: ${product.price}.лв<p>
 					  <div class="stars">
