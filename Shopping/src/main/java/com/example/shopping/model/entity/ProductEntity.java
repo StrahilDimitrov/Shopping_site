@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 @Table(name = "products")
 public class ProductEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "product_name")

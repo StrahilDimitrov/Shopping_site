@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 @Table(name = "tech_specifications")
 public class SpecificationsEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
