@@ -38,7 +38,7 @@ public class InitService {
 
 			reader.close();
 
-			if (productRepository.count() < products.size()) {
+			if (productRepository.count() != products.size()) {
 				this.orderItemRepository.deleteAll();
 				this.shoppingItemRepository.deleteAll();
 				this.specificationsRepositor.deleteAll();
