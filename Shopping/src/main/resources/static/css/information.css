@@ -92,28 +92,23 @@ html {
     }
 }
 
-#information {
+#information{
     width: 100%;
+    display: table;
 }
 
-#information table td,
-th {
-    font-size: 20px;
-    padding: 20px 20px 20px 20px;
+#information #pictures img{
+    width: 580;
+    height: 600px;
 }
 
-#information .good {
-    background: #DCDCDC;
+#information #productName{
+    padding: 0px 150px;
+    font-size: 3rem;
 }
 
-#information table,
-td img {
-    width: 640;
-    height: 660px;
-}
-
-#info td h1 {
-    font-size: 80px;
-    text-align: right;
-    margin-bottom: 20px;
+#information #productPrice{
+    font-size: 2.6rem;
+    padding-right: 200px;
+    color: #FF0000;
 }

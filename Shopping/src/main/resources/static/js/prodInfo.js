@@ -10,14 +10,15 @@ fetch(backendLocation + "api/product/info/" + productId)
 		let out = "";
 
 		out += `<table>
-	<tr>
-	<td><img src="${productInfo.image}"</td>
-	<td><h1>Офис настолен компютър${productInfo.productName}</h1></td>
-</tr>
-<tr>
-<th>${productInfo.price}</th>
-</tr>
-</table>`
+			<tr>
+				<th id = "pictures"><img src="${productInfo.image}" /></th>
+				<th id = "productName"><stong>${productInfo.productName}</strong>
+					</br></br>
+					<span id = "productPrice">${productInfo.price} лв.</span>
+				</th>
+			</tr>
+		</table>`
 
+		console.log(productInfo);
 		placeholder.innerHTML = out;
 	})
