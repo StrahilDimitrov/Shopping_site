@@ -7,10 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shopping.model.entity.ProductEntity;
+import com.example.shopping.repository.OrderItemRepository;
 import com.example.shopping.repository.ProductRepository;
+import com.example.shopping.repository.ShoppingItemRepository;
 import com.example.shopping.repository.SpecificationsRepository;
 import com.google.gson.Gson;
 
@@ -19,14 +20,17 @@ public class InitService {
 	private final ProductRepository productRepository;
 	private final SpecificationsRepository specificationsRepositor;
 	private final Gson gson;
+	private final ShoppingItemRepository shoppingItemRepository;
+	private final OrderItemRepository orderItemRepository;
 
-	public InitService(ProductRepository productRepository, Gson gson, SpecificationsRepository specificationsRepositor) {
+	public InitService(ProductRepository productRepository, Gson gson, SpecificationsRepository specificationsRepositor, ShoppingItemRepository shoppingItemRepository, OrderItemRepository orderItemRepository) {
 		this.productRepository = productRepository;
 		this.specificationsRepositor = specificationsRepositor;
 		this.gson = gson;
+		this.shoppingItemRepository = shoppingItemRepository;
+		this.orderItemRepository = orderItemRepository;
 	}
 
-	@Transactional
 	public void initDb() {
 		try (FileReader reader = new FileReader(
 				Path.of("src", "main", "resources", "static", "js", "products.json").toFile())) {
@@ -34,8 +38,14 @@ public class InitService {
 
 			reader.close();
 
-			if (productRepository.count() == 0) {
-				products = productRepository.saveAll(products);
+			if (productRepository.count() < products.size()) {
+				this.orderItemRepository.deleteAll();
+				this.shoppingItemRepository.deleteAll();
+				this.specificationsRepositor.deleteAll();
+				this.productRepository.deleteAll();
+				
+				
+				products = this.productRepository.saveAll(products);
 
 				for (ProductEntity product : products) {
 					product.getSpecs().forEach(sp -> {
