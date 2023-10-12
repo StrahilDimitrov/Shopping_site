@@ -23,13 +23,13 @@ public class ShoppingCartController {
 	@GetMapping("/add/{id}")
 	public ModelAndView addItem(@PathVariable("id") Long id, @AuthenticationPrincipal ApplicationUserDetails user,
 			ModelAndView modelAndView) {
-		String category = "";
-		
+		Long categoryId = 0l;
+
 		if (user != null) {
-			category = this.shoppingCartService.addToCart(id, user.getUsername());
+			categoryId = this.shoppingCartService.addToCart(id, user.getUsername());
 		}
 
-		modelAndView.setViewName("redirect:/products/" + category.toLowerCase());
+		modelAndView.setViewName("redirect:/products/" + categoryId);
 
 		return modelAndView;
 

@@ -15,13 +15,16 @@ public class DetailedProductViewDto {
 
 	private String image;
 
+	private String description;
+
 	private List<SpecificationDto> specs;
 
 	public DetailedProductViewDto() {
 		this.specs = new ArrayList<>();
 	}
 
-	public DetailedProductViewDto(String productName, BigDecimal price, String image, List<SpecificationDto> specs) {
+	public DetailedProductViewDto(String productName, BigDecimal price, String image, String description,
+			List<SpecificationDto> specs) {
 		this();
 		this.productName = productName;
 		this.price = price;
@@ -65,6 +68,15 @@ public class DetailedProductViewDto {
 		return this;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public DetailedProductViewDto setDescription(String description) {
+		this.description = description;
+		return this;
+	}
+
 	public List<SpecificationDto> getSpecs() {
 		return specs;
 	}
@@ -81,6 +93,7 @@ public class DetailedProductViewDto {
 			.setImage(productEntity.getImage())
 			.setPrice(productEntity.getPrice())
 			.setProductName(productEntity.getProductName())
+			.setDescription(productEntity.getDescription())
 			.setSpecs(productEntity.getSpecs().stream().map(SpecificationDto::mapToSpecDto).toList());
 
 		return product;

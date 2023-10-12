@@ -3,12 +3,14 @@ package com.example.shopping.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.example.shopping.model.entity.ProductEntity;
+import com.example.shopping.model.entity.SpecificationsEntity;
 import com.example.shopping.repository.OrderItemRepository;
 import com.example.shopping.repository.ProductRepository;
 import com.example.shopping.repository.ShoppingItemRepository;
@@ -23,7 +25,8 @@ public class InitService {
 	private final ShoppingItemRepository shoppingItemRepository;
 	private final OrderItemRepository orderItemRepository;
 
-	public InitService(ProductRepository productRepository, Gson gson, SpecificationsRepository specificationsRepositor, ShoppingItemRepository shoppingItemRepository, OrderItemRepository orderItemRepository) {
+	public InitService(ProductRepository productRepository, Gson gson, SpecificationsRepository specificationsRepositor,
+			ShoppingItemRepository shoppingItemRepository, OrderItemRepository orderItemRepository) {
 		this.productRepository = productRepository;
 		this.specificationsRepositor = specificationsRepositor;
 		this.gson = gson;
@@ -35,10 +38,15 @@ public class InitService {
 		try (FileReader reader = new FileReader(
 				Path.of("src", "main", "resources", "static", "js", "products.json").toFile())) {
 			List<ProductEntity> products = Arrays.stream(gson.fromJson(reader, ProductEntity[].class)).toList();
+			List<SpecificationsEntity> specs = new ArrayList<>();
+
+			for (ProductEntity product : products) {
+				product.getSpecs().forEach(s -> specs.add(s));
+			}
 
 			reader.close();
 
-			if (productRepository.count() != products.size()) {
+			if (productRepository.count() != products.size() || specificationsRepositor.count() != specs.size()) {
 				this.orderItemRepository.deleteAll();
 				this.shoppingItemRepository.deleteAll();
 				this.specificationsRepositor.deleteAll();

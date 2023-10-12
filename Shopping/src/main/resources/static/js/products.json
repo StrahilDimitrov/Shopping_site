@@ -8,21 +8,7 @@
 		"category": {
 			"id": 5,
 			"name": "LAPTOPS"
-		},
-		"specs": [
-			{
-				"name": "Ram",
-				"value": "8GB"
-			},
-			{
-				"name": "CPU",
-				"value": "INTEL CORE I7"
-			},
-			{
-				"name": "GPU",
-				"value": "NVIDIA RTX 4060"
-			}
-		]
+		}
 	},
 	{
 		"productName": "Acer NITRO 5",
@@ -49,7 +35,7 @@
 	{
 		"productName": "ACER VERITON S2680G",
 		"price": 599.0,
-		"description": "Good computer",
+		"description": "Офис настолен компютър ACER VERITON S2680G DT.VV2EX.003 HDD 1000 GB, INTEL PENTIUM GOLD G6405, INTEL UHD GRAPHICS 610, 8 GB, 3200 MHz",
 		"quantity": 11,
 		"image": "/images/computer Page/comp1.jpg",
 		"category": {
@@ -63,11 +49,11 @@
 			},
 			{
 				"name": "CPU",
-				"value": "INTEL CORE I7"
+				"value": "INTEL PENTIUM GOLD G6405"
 			},
 			{
 				"name": "GPU",
-				"value": "NVIDIA RTX 4060"
+				"value": "INTEL UHD GRAPHICS 610"
 			}
 		]
 	},
@@ -91,7 +77,21 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "16GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL CORE I7"
+			},
+			{
+				"name": "GPU",
+				"value": "NVIDIA RTX 3060"
+			}
+		]
 	},
 	{
 		"productName": "ASUS G10CE-21403",
@@ -113,7 +113,21 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "32GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL CORE I9"
+			},
+			{
+				"name": "GPU",
+				"value": "NVIDIA RTX 4090"
+			}
+		]
 	},
 	{
 		"productName": "ASUS ROG Strix G15DK-WB5520",
