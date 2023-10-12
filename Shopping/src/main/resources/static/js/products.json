@@ -24,11 +24,11 @@
 	{
 		"productName": "ASUS VIVOBOOK 5",
 		"price": 2000.0,
-		"description": "Good laptop",
+		"description": "Good smartphone",
 		"quantity": 14,
 		"image": "/images/huaweiP50.png",
 		"category": {
-			"id": 5,
+			"id": 2,
 			"name": "LAPTOPS"
 		}
 	},
