@@ -19,50 +19,50 @@ import com.google.gson.Gson;
 
 @Service
 public class InitService {
-	private final ProductRepository productRepository;
-	private final SpecificationsRepository specificationsRepositor;
-	private final Gson gson;
-	private final ShoppingItemRepository shoppingItemRepository;
-	private final OrderItemRepository orderItemRepository;
+    private final ProductRepository productRepository;
+    private final SpecificationsRepository specificationsRepository;
+    private final Gson gson;
+    private final ShoppingItemRepository shoppingItemRepository;
+    private final OrderItemRepository orderItemRepository;
 
-	public InitService(ProductRepository productRepository, Gson gson, SpecificationsRepository specificationsRepositor,
-			ShoppingItemRepository shoppingItemRepository, OrderItemRepository orderItemRepository) {
-		this.productRepository = productRepository;
-		this.specificationsRepositor = specificationsRepositor;
-		this.gson = gson;
-		this.shoppingItemRepository = shoppingItemRepository;
-		this.orderItemRepository = orderItemRepository;
-	}
+    public InitService(ProductRepository productRepository, Gson gson, SpecificationsRepository specificationsRepository,
+                       ShoppingItemRepository shoppingItemRepository, OrderItemRepository orderItemRepository) {
+        this.productRepository = productRepository;
+        this.specificationsRepository = specificationsRepository;
+        this.gson = gson;
+        this.shoppingItemRepository = shoppingItemRepository;
+        this.orderItemRepository = orderItemRepository;
+    }
 
-	public void initDb() {
-		try (FileReader reader = new FileReader(
-				Path.of("src", "main", "resources", "static", "js", "products.json").toFile())) {
-			List<ProductEntity> products = Arrays.stream(gson.fromJson(reader, ProductEntity[].class)).toList();
-			List<SpecificationsEntity> specs = new ArrayList<>();
+    public void initDb() {
+        try (FileReader reader = new FileReader(
+                Path.of("src", "main", "resources", "static", "js", "products.json").toFile())) {
+            List<ProductEntity> products = Arrays.stream(gson.fromJson(reader, ProductEntity[].class)).toList();
+            List<SpecificationsEntity> specs = new ArrayList<>();
 
-			for (ProductEntity product : products) {
-				product.getSpecs().forEach(s -> specs.add(s));
-			}
+            for (ProductEntity product : products) {
+                specs.addAll(product.getSpecs());
+            }
 
-			reader.close();
+            reader.close();
 
-			if (productRepository.count() != products.size() || specificationsRepositor.count() != specs.size()) {
-				this.orderItemRepository.deleteAll();
-				this.shoppingItemRepository.deleteAll();
-				this.specificationsRepositor.deleteAll();
-				this.productRepository.deleteAll();
+            if (productRepository.count() != products.size() || specificationsRepository.count() != specs.size()) {
+                this.orderItemRepository.deleteAll();
+                this.shoppingItemRepository.deleteAll();
+                this.specificationsRepository.deleteAll();
+                this.productRepository.deleteAll();
 
-				products = this.productRepository.saveAll(products);
+                products = this.productRepository.saveAll(products);
 
-				for (ProductEntity product : products) {
-					product.getSpecs().forEach(sp -> {
-						sp.setProduct(product);
-						this.specificationsRepositor.save(sp);
-					});
-				}
-			}
-		} catch (IOException e) {
-			System.out.println("File does't exist!");
-		}
-	}
+                for (ProductEntity product : products) {
+                    product.getSpecs().forEach(sp -> {
+                        sp.setProduct(product);
+                        this.specificationsRepository.save(sp);
+                    });
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("File doesn't exist!");
+        }
+    }
 }
