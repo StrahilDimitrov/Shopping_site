@@ -1,6 +1,8 @@
 package com.example.shopping.model.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.shopping.model.entity.ProductEntity;
 
@@ -13,13 +15,14 @@ public class DetailedProductViewDto {
 
 	private String image;
 
-	private String specs;
+	private List<SpecificationDto> specs;
 
 	public DetailedProductViewDto() {
-
+		this.specs = new ArrayList<>();
 	}
 
-	public DetailedProductViewDto(String productName, BigDecimal price, String image, String specs) {
+	public DetailedProductViewDto(String productName, BigDecimal price, String image, List<SpecificationDto> specs) {
+		this();
 		this.productName = productName;
 		this.price = price;
 		this.image = image;
@@ -62,11 +65,11 @@ public class DetailedProductViewDto {
 		return this;
 	}
 
-	public String getSpecs() {
+	public List<SpecificationDto> getSpecs() {
 		return specs;
 	}
 
-	public DetailedProductViewDto setSpecs(String specs) {
+	public DetailedProductViewDto setSpecs(List<SpecificationDto> specs) {
 		this.specs = specs;
 		return this;
 	}
@@ -77,7 +80,8 @@ public class DetailedProductViewDto {
 		product.setId(productEntity.getId())
 			.setImage(productEntity.getImage())
 			.setPrice(productEntity.getPrice())
-			.setProductName(productEntity.getProductName()).setSpecs(null);
+			.setProductName(productEntity.getProductName())
+			.setSpecs(productEntity.getSpecs().stream().map(SpecificationDto::mapToSpecDto).toList());
 
 		return product;
 	}

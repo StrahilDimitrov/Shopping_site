@@ -8,7 +8,21 @@
     "category": {
       "id": 5,
       "name": "LAPTOPS"
-    }
+    },
+    "specs": [
+        {
+            "name": "Ram",
+            "value": "8GB"
+        },
+        {
+            "name": "CPU",
+            "value": "INTEL CORE I7"
+        },
+        {
+            "name": "GPU",
+            "value": "NVIDIA RTX 4060"
+        }
+    ]
   },
   {
     "productName": "Acer NITRO 5",

@@ -1,6 +1,8 @@
 package com.example.shopping.model.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,18 +38,23 @@ public class ProductEntity {
 	@ManyToOne
 	private CategoryEntity category;
 
-	public ProductEntity() {
+	@OneToMany(targetEntity = SpecificationsEntity.class, mappedBy = "product")
+	private List<SpecificationsEntity> specs;
 
+	public ProductEntity() {
+		specs = new ArrayList<>();
 	}
 
 	public ProductEntity(String productName, BigDecimal price, String description, int quantity, String image,
-			CategoryEntity category) {
+			CategoryEntity category, List<SpecificationsEntity> specs) {
+		this();
 		this.productName = productName;
 		this.price = price;
 		this.description = description;
 		this.quantity = quantity;
 		this.image = image;
 		this.category = category;
+		this.specs = specs;
 	}
 
 	public Long getId() {
@@ -109,6 +117,15 @@ public class ProductEntity {
 
 	public ProductEntity setCategory(CategoryEntity category) {
 		this.category = category;
+		return this;
+	}
+
+	public List<SpecificationsEntity> getSpecs() {
+		return specs;
+	}
+
+	public ProductEntity setSpecs(List<SpecificationsEntity> specs) {
+		this.specs = specs;
 		return this;
 	}
 

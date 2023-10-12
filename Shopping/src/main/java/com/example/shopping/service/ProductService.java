@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shopping.model.dto.DetailedProductViewDto;
 import com.example.shopping.model.dto.ProductViewDto;
@@ -45,6 +46,7 @@ public class ProductService {
 		return loadItemsByCategory(category);
 	}
 
+	@Transactional
 	public DetailedProductViewDto getProductById(Long id) {
 		DetailedProductViewDto product = this.productRepository.findById(id)
 				.map(DetailedProductViewDto::mapToDetailedView).get();
