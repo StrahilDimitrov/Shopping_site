@@ -14,7 +14,7 @@ fetch(backendLocation + "api/product/info/" + productId)
 				<th id = "pictures"><img src="${productInfo.image}" /></th>
 				<th id = "productName"><stong>${productInfo.productName}</strong>
 					</br>
-					Цена: <span id = "productPrice">${productInfo.price} лв.</span><a href="#" class="btn">Add Card</a>
+					Цена: <span id = "productPrice">${productInfo.price} лв.</span><a href="/add/${productInfo.id}" class="btn">Add Card</a>
 				</th>
 			</tr>`
 

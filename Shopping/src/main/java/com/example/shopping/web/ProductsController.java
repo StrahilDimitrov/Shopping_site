@@ -54,7 +54,7 @@ public class ProductsController {
 			@PathVariable(name = "id") Long id) {
 		this.shoppingItemService.loadShoppingCart(modelAndView, user);
 
-		modelAndView.setViewName("information");
+		modelAndView.setViewName("productInfo");
 		modelAndView.addObject("id", id);
 
 		return modelAndView;
@@ -62,11 +62,11 @@ public class ProductsController {
 
 	private void addingToView(ModelAndView modelAndView, Long id) {
 		modelAndView.addObject("id", id);
-		modelAndView.setViewName("productPage");
+		modelAndView.setViewName("productsPage");
 	}
 
 	private void addingToView(ModelAndView modelAndView, List<ProductViewDto> products) {
 		modelAndView.addObject("products", products);
-		modelAndView.setViewName("productPage");
+		modelAndView.setViewName("productsPage");
 	}
 }
