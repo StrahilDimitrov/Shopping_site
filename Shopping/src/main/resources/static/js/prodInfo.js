@@ -13,23 +13,23 @@ fetch(backendLocation + "api/product/info/" + productId)
 		out += `<tr>
 				<th id = "pictures"><img src="${productInfo.image}" /></th>
 				<th id = "productName"><stong>${productInfo.productName}</strong>
-					</br></br>
-					<span id = "productPrice">${productInfo.price} лв.</span>
+					</br>
+					Цена: <span id = "productPrice">${productInfo.price} лв.</span><a href="#" class="btn">Add Card</a>
 				</th>
 			</tr>`
 
 		for (const element of productInfo.specs) {
 			if(counter % 2 === 0){
 				out += `<tr id = "color">
-					<th>${element.name}</th>
-					<th>${element.value}</th>
+					<td>${element.name}</th>
+					<td>${element.value}</th>
 				</tr>
 			</table>`
 			}
 			else{
 				out += `<tr>
-					<th>${element.name}</th>
-					<th>${element.value}</th>
+					<td>${element.name}</th>
+					<td>${element.value}</th>
 				</tr>`
 			}
 			counter++;
