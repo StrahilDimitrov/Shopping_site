@@ -112,3 +112,12 @@ html {
     padding-right: 200px;
     color: #FF0000;
 }
+
+#information #color{
+    background: #DCDCDC;
+}
+
+#information th{
+    font-size: 1.8rem;
+    text-align: center;
+}
