@@ -54,23 +54,69 @@
 			{
 				"name": "GPU",
 				"value": "INTEL UHD GRAPHICS 610"
+			},
+			{
+				"name": "SSD",
+				"value": "256GB"
+			},
+			{
+				"name": "Power",
+				"value": "180 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "Windows 10"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
 			}
 		]
 	},
 	{
 		"productName": "APPLE MAC MINI",
-		"price": 899.0,
+		"price": 999.0,
 		"description": "Good computer",
 		"quantity": 17,
 		"image": "/images/computer Page/comp4.jpg",
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "8GB"
+			},
+			{
+				"name": "CPU",
+				"value": "APPLE M1 8 CORE"
+			},
+			{
+				"name": "GPU",
+				"value": "INTEGRATED 8-CORE GPU"
+			},
+			{
+				"name": "SSD",
+				"value": "256GB"
+			},
+			{
+				"name": "Power",
+				"value": "180 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "MAC OS"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "ACER Nitro N50-640",
-		"price": 1399.0,
+		"price": 1599.0,
 		"description": "Good computer",
 		"quantity": 12,
 		"image": "/images/computer Page/comp2.jpg",
@@ -85,11 +131,27 @@
 			},
 			{
 				"name": "CPU",
-				"value": "INTEL CORE I7"
+				"value": "INTEL CORE I5-12400F"
 			},
 			{
 				"name": "GPU",
-				"value": "NVIDIA RTX 3060"
+				"value": "NVIDIA GEFORCE GTX 1660 SUPER"
+			},
+			{
+				"name": "SSD",
+				"value": "512GB"
+			},
+			{
+				"name": "Power",
+				"value": "500 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "Windows 11"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
 			}
 		]
 	},
@@ -102,7 +164,37 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "16GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL CORE I5-11400F"
+			},
+			{
+				"name": "GPU",
+				"value": "NVIDIA GeForce GTX1660Ti"
+			},
+			{
+				"name": "SSD",
+				"value": "512GB"
+			},
+			{
+				"name": "Power",
+				"value": "500 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "Windows 11"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "ACER PREDATOR PO3-630",
@@ -117,15 +209,31 @@
 		"specs": [
 			{
 				"name": "Ram",
-				"value": "32GB"
+				"value": "16GB"
 			},
 			{
 				"name": "CPU",
-				"value": "INTEL CORE I9"
+				"value": "NTEL CORE I5-11400F"
 			},
 			{
 				"name": "GPU",
-				"value": "NVIDIA RTX 4090"
+				"value": "NVIDIA GeForce RTX 3070"
+			},
+			{
+				"name": "SSD",
+				"value": "1024GB"
+			},
+			{
+				"name": "Power",
+				"value": "500 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "None"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
 			}
 		]
 	},
@@ -138,7 +246,41 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "16GB"
+			},
+			{
+				"name": "CPU",
+				"value": "AMD RYZEN 5 5600X"
+			},
+			{
+				"name": "GPU",
+				"value": "NVIDIA GEFORCE RTX 3050"
+			},
+			{
+				"name": "SSD",
+				"value": "1024GB"
+			},
+			{
+				"name": "HDD",
+				"value": "1000GB"
+			},
+			{
+				"name": "Power",
+				"value": "500 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "None"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "GPLAY OFFICETHON",
@@ -149,7 +291,37 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "8GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL CELERON J3355"
+			},
+			{
+				"name": "GPU",
+				"value": "NTEL HD GRAPHICS 500"
+			},
+			{
+				"name": "SSD",
+				"value": "512GB"
+			},
+			{
+				"name": "Power",
+				"value": "500 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "Windows 10"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "LENOVO T540-15ICK",
