@@ -332,7 +332,41 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "8GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL CORE I5-9400F"
+			},
+			{
+				"name": "GPU",
+				"value": "NVIDIA GeForce GTX1660"
+			},
+			{
+				"name": "HDD",
+				"value": "1000GB"
+			},
+			{
+				"name": "SSD",
+				"value": "256GB"
+			},
+			{
+				"name": "Power",
+				"value": "310 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "None"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "Dell OptiPlex 7010",
@@ -343,7 +377,41 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "8GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL CORE I5-3570"
+			},
+			{
+				"name": "GPU",
+				"value": "Intel HD Graphics 2500"
+			},
+			{
+				"name": "HDD",
+				"value": "1TB"
+			},
+			{
+				"name": "SSD",
+				"value": "512GB"
+			},
+			{
+				"name": "Power",
+				"value": "500 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "Windows 10"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "HP Z440 Workstation",
@@ -354,7 +422,37 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "32GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL XEON E5-1620"
+			},
+			{
+				"name": "GPU",
+				"value": "Intel HD Graphics 2500"
+			},
+			{
+				"name": "HDD",
+				"value": "1TB"
+			},
+			{
+				"name": "Power",
+				"value": "310 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "None"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "MSI Cubi N ADL-002EU",
@@ -365,7 +463,37 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "16GB"
+			},
+			{
+				"name": "CPU",
+				"value": "INTEL N200"
+			},
+			{
+				"name": "GPU",
+				"value": "Intel UHD Graphics Xe 750 32EUs"
+			},
+			{
+				"name": "SSD",
+				"value": "128GB"
+			},
+			{
+				"name": "Power",
+				"value": "310 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "Windows 10"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "GIGABYTE Brix BRR3-4300",
@@ -376,7 +504,37 @@
 		"category": {
 			"id": 1,
 			"name": "COMPUTERS"
-		}
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "32GB"
+			},
+			{
+				"name": "CPU",
+				"value": "AMD Ryzen 3 4300U"
+			},
+			{
+				"name": "GPU",
+				"value": "AMD Radeon RX Vega 5 Graphics"
+			},
+			{
+				"name": "SSD",
+				"value": "1000GB"
+			},
+			{
+				"name": "Power",
+				"value": "310 W"
+			},
+			{
+				"name": "Operation system",
+				"value": "Windows 10"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	},
 	{
 		"productName": "GSM PANASONIC KX-TU110",
