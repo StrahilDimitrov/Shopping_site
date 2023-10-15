@@ -1,7 +1,9 @@
 package com.example.shopping.web;
 
-import java.util.List;
-
+import com.example.shopping.model.dto.ApplicationUserDetails;
+import com.example.shopping.model.dto.ProductViewDto;
+import com.example.shopping.service.ProductService;
+import com.example.shopping.service.ShoppingCartService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,64 +11,59 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.shopping.model.dto.ApplicationUserDetails;
-import com.example.shopping.model.dto.ProductViewDto;
-import com.example.shopping.service.InitService;
-import com.example.shopping.service.ProductService;
-import com.example.shopping.service.ShoppingItemService;
+import java.util.List;
 
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
-	private final ProductService productService;
-	private final ShoppingItemService shoppingItemService;
+    private final ProductService productService;
+    private final ShoppingCartService shoppingCartService;
 
-	public ProductsController(InitService init, ProductService productService,
-			ShoppingItemService shoppingItemService) {
-		this.productService = productService;
-		this.shoppingItemService = shoppingItemService;
-	}
+    public ProductsController(ProductService productService, ShoppingCartService shoppingCartService) {
+        this.productService = productService;
+        this.shoppingCartService = shoppingCartService;
+    }
 
-	@GetMapping("/search")
-	public ModelAndView getSearchResult(String filter, ModelAndView modelAndView,
-			@AuthenticationPrincipal ApplicationUserDetails user) {
-		List<ProductViewDto> products = this.productService.search(filter);
+    @GetMapping("/search")
+    public ModelAndView getSearchResult(String filter, ModelAndView modelAndView,
+                                        @AuthenticationPrincipal ApplicationUserDetails user) {
+        List<ProductViewDto> products = this.productService.search(filter);
 
-		addingToView(modelAndView, products);
+        addingToView(modelAndView, products);
 
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
-		return modelAndView;
-	}
+        return modelAndView;
+    }
 
-	@GetMapping("/{id}")
-	public ModelAndView getProducts(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
-			@PathVariable(name = "id") Long id) {
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+    @GetMapping("/{id}")
+    public ModelAndView getProducts(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
+                                    @PathVariable(name = "id") Long id) {
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
-		addingToView(modelAndView, id);
+        addingToView(modelAndView, id);
 
-		return modelAndView;
-	}
+        return modelAndView;
+    }
 
-	@GetMapping("/info/{id}")
-	public ModelAndView getProduct(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
-			@PathVariable(name = "id") Long id) {
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+    @GetMapping("/info/{id}")
+    public ModelAndView getProduct(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user,
+                                   @PathVariable(name = "id") Long id) {
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
-		modelAndView.setViewName("productInfo");
-		modelAndView.addObject("id", id);
+        modelAndView.setViewName("productInfo");
+        modelAndView.addObject("id", id);
 
-		return modelAndView;
-	}
+        return modelAndView;
+    }
 
-	private void addingToView(ModelAndView modelAndView, Long id) {
-		modelAndView.addObject("id", id);
-		modelAndView.setViewName("productsPage");
-	}
+    private void addingToView(ModelAndView modelAndView, Long id) {
+        modelAndView.addObject("id", id);
+        modelAndView.setViewName("productsPage");
+    }
 
-	private void addingToView(ModelAndView modelAndView, List<ProductViewDto> products) {
-		modelAndView.addObject("products", products);
-		modelAndView.setViewName("productsPage");
-	}
+    private void addingToView(ModelAndView modelAndView, List<ProductViewDto> products) {
+        modelAndView.addObject("products", products);
+        modelAndView.setViewName("productsPage");
+    }
 }

@@ -23,14 +23,15 @@ public class ShoppingCartController {
 	@GetMapping("/add/{id}")
 	public ModelAndView addItem(@PathVariable("id") Long id, @AuthenticationPrincipal ApplicationUserDetails user,
 			ModelAndView modelAndView) {
-		Long categoryId = 0l;
+		Long categoryId = 0L;
 
 		if (user != null) {
 			categoryId = this.shoppingCartService.addToCart(id, user.getUsername());
 		}
 
 		modelAndView.setViewName("redirect:/products/" + categoryId);
-
+		this.shoppingItemService.refreshItems();
+		
 		return modelAndView;
 
 	}
@@ -52,6 +53,8 @@ public class ShoppingCartController {
 		this.shoppingItemService.removeItemById(id);
 
 		modelAndView.setViewName("redirect:/");
+		
+		this.shoppingItemService.refreshItems();
 
 		return modelAndView;
 

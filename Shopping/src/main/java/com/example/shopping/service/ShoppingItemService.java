@@ -1,16 +1,5 @@
 package com.example.shopping.service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.example.shopping.model.dto.ApplicationUserDetails;
-import com.example.shopping.model.dto.ShoppingCartDto;
 import com.example.shopping.model.dto.ShoppingCartItemDto;
 import com.example.shopping.model.entity.ShoppingCartEntity;
 import com.example.shopping.model.entity.ShoppingItemEntity;
@@ -18,6 +7,12 @@ import com.example.shopping.model.entity.UserEntity;
 import com.example.shopping.repository.ShoppingCartRepository;
 import com.example.shopping.repository.ShoppingItemRepository;
 import com.example.shopping.repository.UserRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShoppingItemService {
@@ -32,14 +27,18 @@ public class ShoppingItemService {
 		this.userRepository = userRepository;
 	}
 
+	@Cacheable("items")
 	public List<ShoppingCartItemDto> getAllItemsByUser(String email) {
 		UserEntity user = this.userRepository.findByEmail(email).orElse(null);
 		ShoppingCartEntity cart = this.shoppingCartRepository.findByUser(user).orElse(null);
 
-		List<ShoppingCartItemDto> items = this.itemRepository.findAllByCart(cart).get().stream()
+		return this.itemRepository.findAllByCart(cart).get().stream()
 				.map(ShoppingCartItemDto::mapToShoppingItemDto).collect(Collectors.toList());
+	}
 
-		return items;
+	@CacheEvict(cacheNames = "items", allEntries = true)
+	public void refreshItems() {
+
 	}
 
 	public void removeItemById(Long id) {
@@ -54,38 +53,4 @@ public class ShoppingItemService {
 		}
 	}
 
-	public void loadShoppingCart(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-		List<ShoppingCartItemDto> cartItems = new ArrayList<>();
-
-		if (user != null) {
-			cartItems = getAllItemsByUser(user.getUsername());
-		}
-
-		BigDecimal total = new BigDecimal(0);
-
-		for (ShoppingCartItemDto item : cartItems) {
-			total = total.add(item.getAmount());
-		}
-
-		modelAndView.addObject("total", total);
-		modelAndView.addObject("cartItems", cartItems);
-	}
-
-	public ShoppingCartDto getShoppingCart(@AuthenticationPrincipal ApplicationUserDetails user) {
-		List<ShoppingCartItemDto> cartItems = new ArrayList<>();
-
-		if (user != null) {
-			cartItems = getAllItemsByUser(user.getUsername());
-		}
-
-		BigDecimal total = new BigDecimal(0);
-
-		for (ShoppingCartItemDto item : cartItems) {
-			total = total.add(item.getAmount());
-		}
-
-		ShoppingCartDto shoppingCartDto = new ShoppingCartDto(cartItems, total);
-
-		return shoppingCartDto;
-	}
 }

@@ -6,38 +6,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.shopping.model.dto.ApplicationUserDetails;
-import com.example.shopping.service.ShoppingItemService;
+import com.example.shopping.service.ShoppingCartService;
 
 @Controller
 public class HomeController {
-	private final ShoppingItemService shoppingItemService;
+    private final ShoppingCartService shoppingCartService;
 
-	public HomeController(ShoppingItemService shoppingItemService) {
-		this.shoppingItemService = shoppingItemService;
-	}
+    public HomeController(ShoppingCartService shoppingCartService) {
+        this.shoppingCartService = shoppingCartService;
+    }
 
-	@GetMapping("/")
-	public ModelAndView getHome(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+    @GetMapping("/")
+    public ModelAndView getHome(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
-		modelAndView.setViewName("Shopping");
+        modelAndView.setViewName("Shopping");
 
-		return modelAndView;
-	}
+        return modelAndView;
+    }
 
-	@GetMapping("/aboutUs")
-	public ModelAndView getAboutUs(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
-		modelAndView.setViewName("AboutUs");
+    @GetMapping("/aboutUs")
+    public ModelAndView getAboutUs(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
+        modelAndView.setViewName("AboutUs");
 
-		return modelAndView;
-	}
-	
-	@GetMapping("/reviews")
-	public ModelAndView getReviews(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
-		modelAndView.setViewName("Review");
+        return modelAndView;
+    }
 
-		return modelAndView;
-	}
+    @GetMapping("/reviews")
+    public ModelAndView getReviews(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
+        modelAndView.setViewName("Review");
+
+        return modelAndView;
+    }
 }

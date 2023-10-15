@@ -6,22 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.shopping.model.dto.ApplicationUserDetails;
-import com.example.shopping.service.ShoppingItemService;
+import com.example.shopping.service.ShoppingCartService;
 
 @Controller
 public class CategoriesController {
-	private final ShoppingItemService shoppingItemService;
+    private final ShoppingCartService shoppingCartService;
 
-	public CategoriesController(ShoppingItemService shoppingItemService) {
-		this.shoppingItemService = shoppingItemService;
-	}
+    public CategoriesController(ShoppingCartService shoppingCartService) {
+        this.shoppingCartService = shoppingCartService;
+    }
 
-	@GetMapping("/categories")
-	public ModelAndView getCategories(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
-		this.shoppingItemService.loadShoppingCart(modelAndView, user);
+    @GetMapping("/categories")
+    public ModelAndView getCategories(ModelAndView modelAndView, @AuthenticationPrincipal ApplicationUserDetails user) {
+        this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
-		modelAndView.setViewName("Categories");
+        modelAndView.setViewName("Categories");
 
-		return modelAndView;
-	}
+        return modelAndView;
+    }
 }
