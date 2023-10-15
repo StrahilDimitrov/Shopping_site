@@ -30,8 +30,16 @@ public class UserEntity {
 	@OneToMany(mappedBy = "customer")
 	private List<OrderEntity> orders;
 
+	@OneToMany(mappedBy = "user")
+	private List<CreditCardEntity> cards;
+
+	@OneToMany(mappedBy = "user")
+	private List<AddressEntity> deliveryAddresses;
+
 	public UserEntity() {
 		orders = new ArrayList<>();
+		cards = new ArrayList<>();
+		deliveryAddresses = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -68,6 +76,32 @@ public class UserEntity {
 	public UserEntity setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 		return this;
+	}
+
+	public List<OrderEntity> getOrders() {
+		return orders;
+	}
+
+	public UserEntity setOrders(List<OrderEntity> orders) {
+		this.orders = orders;
+		return this;
+	}
+
+	public List<CreditCardEntity> getCards() {
+		return cards;
+	}
+
+	public UserEntity setCards(List<CreditCardEntity> cards) {
+		this.cards = cards;
+		return this;
+	}
+
+	public List<AddressEntity> getDeliveryAddresses() {
+		return deliveryAddresses;
+	}
+
+	public void setDeliveryAddresses(List<AddressEntity> deliveryAddresses) {
+		this.deliveryAddresses = deliveryAddresses;
 	}
 
 }
