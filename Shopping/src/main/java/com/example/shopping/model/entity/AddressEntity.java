@@ -11,76 +11,100 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "addresses")
 public class AddressEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column
-	private String country;
+    @Column(name = "full_name")
+    private String fullName;
 
-	@Column
-	private String city;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Column
+    private String country;
 
-	@Column
-	private String address;
+    @Column
+    private String city;
 
-	@ManyToOne(targetEntity = UserEntity.class)
-	private UserEntity user;
+    @Column
+    private String address;
 
-	public AddressEntity() {
-	
-	}
+    @ManyToOne(targetEntity = UserEntity.class)
+    private UserEntity user;
 
-	public AddressEntity(String country, String city, String address, UserEntity user) {
-		this.country = country;
-		this.city = city;
-		this.address = address;
-		this.user = user;
-	}
+    public AddressEntity() {
 
-	public Long getId() {
-		return id;
-	}
+    }
 
-	public AddressEntity setId(Long id) {
-		this.id = id;
-		return this;
-	}
+    public AddressEntity(String fullName, String phoneNumber, String country, String city, String address, UserEntity user) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.country = country;
+        this.city = city;
+        this.address = address;
+        this.user = user;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public AddressEntity setCountry(String country) {
-		this.country = country;
-		return this;
-	}
+    public AddressEntity setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public AddressEntity setCity(String city) {
-		this.city = city;
-		return this;
-	}
+    public AddressEntity setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getCountry() {
+        return country;
+    }
 
-	public AddressEntity setAddress(String address) {
-		this.address = address;
-		return this;
-	}
+    public AddressEntity setCountry(String country) {
+        this.country = country;
+        return this;
+    }
 
-	public UserEntity getUser() {
-		return user;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public AddressEntity setUser(UserEntity user) {
-		this.user = user;
-		return this;
-	}
+    public AddressEntity setCity(String city) {
+        this.city = city;
+        return this;
+    }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public AddressEntity setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public AddressEntity setUser(UserEntity user) {
+        this.user = user;
+        return this;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public AddressEntity setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
 }

@@ -24,8 +24,8 @@ public class AuthenticatedUserService implements UserDetailsService {
 				.orElseThrow(() -> new UsernameNotFoundException("User with email: " + username + " doesn't exist!"));
 
 		ApplicationUserDetails user = new ApplicationUserDetails(username, userEntity.getPassword(),
-				List.of(new SimpleGrantedAuthority("ROLE_")),
-				userEntity.getPhoneNumber());
+				List.of(new SimpleGrantedAuthority("ROLE_")), userEntity.getPhoneNumber(),
+				userEntity.getFirstName() + " " + userEntity.getLastName());
 
 		return user;
 	}
