@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.shopping.model.dto.RegisterFormDto;
@@ -15,6 +15,7 @@ import com.example.shopping.service.UserService;
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
+	private static final String BINDING_RESULT_PATH = "org.springframework.validation.BindingResult.";
 	private final UserService userService;
 
 	public AuthController(UserService userService) {
@@ -28,18 +29,27 @@ public class AuthController {
 
 	@PostMapping("/register")
 	public String register(@Validated RegisterFormDto registerForm, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes, ModelAndView modelAndView) {
+			RedirectAttributes redirectAttributes) {
 
 		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("registerForm", registerForm)
+					.addFlashAttribute(BINDING_RESULT_PATH + "registerForm", bindingResult);
 
+			return "redirect:/auth/register";
 		}
+		
 		this.userService.registerUser(registerForm);
 
-		return "Shopping";
+		return "redirect:/";
 	}
 
 	@PostMapping("/login-error")
 	public String loginError() {
 		return "Shopping";
+	}
+
+	@ModelAttribute(name = "registerForm")
+	public RegisterFormDto registerForm() {
+		return new RegisterFormDto();
 	}
 }
