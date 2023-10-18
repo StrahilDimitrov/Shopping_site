@@ -19,11 +19,11 @@ public class AuthenticatedUserService implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserEntity userEntity = userRepository.findByEmail(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User with email: " + username + " doesn't exist!"));
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		UserEntity userEntity = userRepository.findByEmail(email)
+				.orElseThrow(() -> new UsernameNotFoundException("User with email: " + email + " doesn't exist!"));
 
-		ApplicationUserDetails user = new ApplicationUserDetails(username, userEntity.getPassword(),
+		ApplicationUserDetails user = new ApplicationUserDetails(email, userEntity.getPassword(),
 				List.of(new SimpleGrantedAuthority("ROLE_")), userEntity.getPhoneNumber(),
 				userEntity.getFirstName() + " " + userEntity.getLastName());
 
