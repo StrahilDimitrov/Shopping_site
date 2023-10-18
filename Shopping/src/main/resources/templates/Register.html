@@ -17,19 +17,19 @@
 	<div class="container">
 		<div class="center">
 			<h1>Register</h1>
-			<form th:method="POST" th:action="@{/auth/register}">
+			<form th:method="POST" th:action="@{/auth/register}" th:object="${registerForm}">
 				<div class="txt_field">
-					<input id="firstName" type="text" name="firstName" required>
+					<input id="firstName" type="text" name="firstName" th:value="*{firstName}" required>
 					<span></span>
 					<label>First name</label>
 				</div>
 				<div class="txt_field">
-					<input id="lastName" type="text" name="lastName" required>
+					<input id="lastName" type="text" name="lastName" th:value="*{lastName}" required>
 					<span></span>
 					<label>Last name</label>
 				</div>
 				<div class="txt_field">
-					<input type="email" name="email" required>
+					<input type="email" name="email" th:value="*{email}" required>
 					<span></span>
 					<label>Email</label>
 				</div>
@@ -39,7 +39,7 @@
 					<label>Password</label>
 				</div>
 				<div class="txt_field">
-					<input id="phoneNumber" name="phoneNumber" required>
+					<input id="phoneNumber" name="phoneNumber" th:value="*{phoneNumber}" required>
 					<span></span>
 					<label>Phone</label>
 				</div>

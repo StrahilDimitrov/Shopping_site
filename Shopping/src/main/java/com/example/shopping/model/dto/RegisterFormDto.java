@@ -7,79 +7,75 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class RegisterFormDto {
-	@NotBlank
-	@Min(3)
-	@Max(10)
-	private String firstName;
+    @Size(min = 3, max = 20)
+    private String firstName;
 
-	@NotBlank
-	@Min(3)
-	@Max(10)
-	private String lastName;
+    @Size(min = 3, max = 20)
+    private String lastName;
 
-	@Email
-	private String email;
+    @Email
+    private String email;
 
-	private String password;
+    private String password;
 
-	@Size(min = 10)
-	private String phoneNumber;
+    @Size(min = 10, max = 10)
+    private String phoneNumber;
 
-	public RegisterFormDto() {
+    public RegisterFormDto() {
 
-	}
+    }
 
-	public RegisterFormDto(String firstName, String lastName, String email, String password, String phoneNumber) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.phoneNumber = phoneNumber;
-	}
+    public RegisterFormDto(String firstName, String lastName, String email, String password, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public RegisterFormDto setFirstName(String firstName) {
-		this.firstName = firstName;
-		return this;
-	}
+    public RegisterFormDto setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public RegisterFormDto setLastName(String lastName) {
-		this.lastName = lastName;
-		return this;
-	}
+    public RegisterFormDto setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public RegisterFormDto setEmail(String email) {
-		this.email = email;
-		return this;
-	}
+    public RegisterFormDto setEmail(String email) {
+        this.email = email;
+        return this;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public RegisterFormDto setPassword(String password) {
-		this.password = password;
-		return this;
-	}
+    public RegisterFormDto setPassword(String password) {
+        this.password = password;
+        return this;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public RegisterFormDto setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-		return this;
-	}
+    public RegisterFormDto setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
 
 }
