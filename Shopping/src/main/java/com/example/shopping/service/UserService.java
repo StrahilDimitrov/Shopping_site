@@ -9,28 +9,25 @@ import com.example.shopping.repository.UserRepository;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+	private final UserRepository userRepository;
+	private final PasswordEncoder passwordEncoder;
 
+	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+	public void registerUser(RegisterFormDto userRegisterForm) {
+		int count = this.userRepository.countByEmail(userRegisterForm.getEmail());
 
-    public void registerUser(RegisterFormDto userRegisterForm) {
-        UserEntity user = this.userRepository.findByEmail(userRegisterForm.getEmail()).orElse(null);
+		if (count > 0) {
+			UserEntity user = new UserEntity(userRegisterForm.getFirstName(), userRegisterForm.getLastName(),
+					userRegisterForm.getEmail(), passwordEncoder.encode(userRegisterForm.getPassword()),
+					userRegisterForm.getPhoneNumber());
 
-        if (user == null) {
-            user = new UserEntity(userRegisterForm.getFirstName(),
-                    userRegisterForm.getLastName(),
-                    userRegisterForm.getEmail(),
-                    passwordEncoder.encode(userRegisterForm.getPassword()),
-                    userRegisterForm.getPhoneNumber());
+			this.userRepository.save(user);
+		}
 
-            this.userRepository.save(user);
-        }
-
-    }
+	}
 
 }

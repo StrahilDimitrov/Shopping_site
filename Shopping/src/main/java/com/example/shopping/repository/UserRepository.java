@@ -8,4 +8,5 @@ import com.example.shopping.model.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	Optional<UserEntity> findByEmail(String email);
+	int countByEmail(String email);
 }
