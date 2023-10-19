@@ -29,7 +29,7 @@ public class ProductsController {
                                         @AuthenticationPrincipal ApplicationUserDetails user) {
         List<ProductViewDto> products = this.productService.search(filter);
 
-        addingToView(modelAndView, products);
+        this.addingToView(modelAndView, products);
 
         this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
@@ -41,7 +41,7 @@ public class ProductsController {
                                     @PathVariable(name = "id") Long id) {
         this.shoppingCartService.loadShoppingCart(modelAndView, user);
 
-        addingToView(modelAndView, id);
+        this.addingToView(modelAndView, id);
 
         return modelAndView;
     }
@@ -64,6 +64,6 @@ public class ProductsController {
 
     private void addingToView(ModelAndView modelAndView, List<ProductViewDto> products) {
         modelAndView.addObject("products", products);
-        modelAndView.setViewName("productsPage");
+        modelAndView.setViewName("searchPage");
     }
 }
