@@ -2,13 +2,14 @@ package com.example.shopping.model.dto;
 
 import com.example.shopping.validation.ValidateUniqueEmail;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class RegisterFormDto {
-    @Size(min = 3, max = 20)
+    @NotBlank
     private String firstName;
 
-    @Size(min = 3, max = 20)
+    @NotBlank
     private String lastName;
 
     @Email

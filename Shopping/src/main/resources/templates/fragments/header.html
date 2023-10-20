@@ -52,6 +52,8 @@
 			<p>Forgot your password? <a href="#">Click Here</a></p>
 			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
 			<input type="submit" value="Login Now" class="btn" />
+			<p th:if="${bad_credentials}" class="errors alert alert-danger">Invalid
+				username or password.</p>
 		</form>
 		<div sec:authorize="isAuthenticated()" style="float: right;">
 			<form th:method="POST" th:action="@{/logout}">

@@ -44,8 +44,9 @@ public class AuthController {
 	}
 
 	@PostMapping("/login-error")
-	public String loginError() {
-		return "Shopping";
+	public String loginError(RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("bad_credentials", true);
+		return "redirect:/";
 	}
 
 	@ModelAttribute(name = "registerForm")
