@@ -1,5 +1,6 @@
 package com.example.shopping.model.dto;
 
+import com.example.shopping.validation.ValidateUniqueEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
@@ -11,6 +12,7 @@ public class RegisterFormDto {
     private String lastName;
 
     @Email
+    @ValidateUniqueEmail
     private String email;
 
     private String password;

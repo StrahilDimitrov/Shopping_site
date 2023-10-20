@@ -1,33 +1,29 @@
 package com.example.shopping.service;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.example.shopping.model.dto.RegisterFormDto;
 import com.example.shopping.model.entity.UserEntity;
 import com.example.shopping.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-	private final UserRepository userRepository;
-	private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-		this.userRepository = userRepository;
-		this.passwordEncoder = passwordEncoder;
-	}
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-	public void registerUser(RegisterFormDto userRegisterForm) {
-		int count = this.userRepository.countByEmail(userRegisterForm.getEmail());
+    public void registerUser(RegisterFormDto userRegisterForm) {
+        String email = userRegisterForm.getEmail();
 
-		if (count > 0) {
-			UserEntity user = new UserEntity(userRegisterForm.getFirstName(), userRegisterForm.getLastName(),
-					userRegisterForm.getEmail(), passwordEncoder.encode(userRegisterForm.getPassword()),
-					userRegisterForm.getPhoneNumber());
+        UserEntity user = new UserEntity(userRegisterForm.getFirstName(), userRegisterForm.getLastName(),
+                email, passwordEncoder.encode(userRegisterForm.getPassword()),
+                userRegisterForm.getPhoneNumber());
 
-			this.userRepository.save(user);
-		}
-
-	}
+        this.userRepository.save(user);
+    }
 
 }
