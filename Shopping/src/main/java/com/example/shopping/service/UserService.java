@@ -26,4 +26,11 @@ public class UserService {
         this.userRepository.save(user);
     }
 
+    public boolean checkEmailExistence(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
+    public void changePassword(String newPassword) {
+//TODO
+    }
 }

@@ -49,7 +49,7 @@
 			<h3>LogIn</h3>
 			<input type="email" name="email" placeholder="Enter email..." class="box" />
 			<input type="password" name="password" placeholder="Enter password..." class="box" />
-			<p>Forgot your password? <a href="#">Click Here</a></p>
+			<p>Forgot your password? <a href="/auth/forgotPassword">Click Here</a></p>
 			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
 			<input type="submit" value="Login Now" class="btn" />
 			<p th:if="${bad_credentials}" class="errors alert alert-danger">Invalid
