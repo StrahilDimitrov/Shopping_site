@@ -30,7 +30,10 @@ public class UserService {
         return this.userRepository.existsByEmail(email);
     }
 
-    public void changePassword(String newPassword) {
-//TODO
+    public void changePassword(String email, String newPassword) {
+        UserEntity user = this.userRepository.findByEmail(email).orElseThrow();
+        user.setPassword(passwordEncoder.encode(newPassword));
+
+        this.userRepository.save(user);
     }
 }

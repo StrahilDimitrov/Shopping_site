@@ -1,7 +1,8 @@
 package com.example.shopping.web;
 
+import com.example.shopping.model.dto.RegisterFormDto;
+import com.example.shopping.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.example.shopping.model.dto.RegisterFormDto;
-import com.example.shopping.service.UserService;
 
 @Controller
 @RequestMapping("/auth")
@@ -59,7 +57,7 @@ public class AuthController {
             return "redirect:/auth/forgotPassword";
         }
         redirectAttributes.addFlashAttribute("email", email);
-        return "changePassword";
+        return "redirect:/auth/changePassword";
     }
 
     @GetMapping("/changePassword")
@@ -68,14 +66,14 @@ public class AuthController {
     }
 
     @PostMapping("/changePassword")
-    public ModelAndView changePassword(String password, String changePassword, RedirectAttributes redirectAttributes, ModelAndView modelAndView) {
-        if (password.equals(changePassword)) {
-            this.userService.changePassword(password);
+    public ModelAndView changePassword(String email, String password, String confirmPassword, RedirectAttributes redirectAttributes, ModelAndView modelAndView) {
+        if (password.equals(confirmPassword)) {
+            this.userService.changePassword(email, password);
             modelAndView.setViewName("Shopping");
 
             return modelAndView;
         }
-        modelAndView.addObject("password", password);
+        redirectAttributes.addFlashAttribute("wrongPass", true);
         modelAndView.setViewName("redirect:/auth/changePassword");
 
         return modelAndView;
