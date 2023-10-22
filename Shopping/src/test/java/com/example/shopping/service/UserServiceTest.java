@@ -2,6 +2,7 @@ package com.example.shopping.service;
 
 import static org.mockito.ArgumentMatchers.any;
 
+import com.example.shopping.repository.ConfirmationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,13 +21,19 @@ public class UserServiceTest {
 
 	@Mock
 	private UserRepository mockUserRepository;
-	
+
 	@Mock
 	private PasswordEncoder passwordEncoder;
 
+	@Mock
+	private ConfirmationRepository confirmationRepository;
+
+	@Mock
+	private EmailService emailService;
+
 	@BeforeEach
 	void setUp() {
-		userService = new UserService(mockUserRepository, passwordEncoder);
+		userService = new UserService(mockUserRepository, passwordEncoder, confirmationRepository, emailService);
 	}
 
 	@Test

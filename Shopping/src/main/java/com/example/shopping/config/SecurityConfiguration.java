@@ -15,33 +15,32 @@ import com.example.shopping.service.AuthenticatedUserService;
 @Configuration
 public class SecurityConfiguration {
 
-	@Bean
-	SecurityFilterChain secFilterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity
-				.authorizeHttpRequests(request -> request
-						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-						.requestMatchers("/auth/login", "/", "/auth/login-error", "/auth/register", "/add/**",
-								"/api/**", "/auth/forgotPassword", "/auth/changePassword")
-						.permitAll()
-						.requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout",
-								"/products/**", "/reviews", "/product/**","/profile")
-						.authenticated())
-				.formLogin(
-						login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
-								.defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
-				.logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
-				.rememberMe(me -> me.key("someUniqueKey").tokenValiditySeconds(604800));
+    @Bean
+    SecurityFilterChain secFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/auth/**", "/", "/add/**", "/api/**")
+                        .permitAll()
+                        .requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout",
+                                "/products/**", "/reviews", "/product/**", "/profile")
+                        .authenticated())
+                .formLogin(
+                        login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
+                                .defaultSuccessUrl("/", true).failureForwardUrl("/auth/login-error"))
+                .logout(out -> out.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
+                .rememberMe(me -> me.key("someUniqueKey").tokenValiditySeconds(604800));
 
-		return httpSecurity.build();
-	}
+        return httpSecurity.build();
+    }
 
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	UserDetailsService userDetails(UserRepository userRepository) {
-		return new AuthenticatedUserService(userRepository);
-	}
+    @Bean
+    UserDetailsService userDetails(UserRepository userRepository) {
+        return new AuthenticatedUserService(userRepository);
+    }
 }

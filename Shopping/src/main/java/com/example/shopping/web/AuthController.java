@@ -1,14 +1,13 @@
 package com.example.shopping.web;
 
+import com.example.shopping.exceptions.AccountIsNotActivatedException;
 import com.example.shopping.model.dto.RegisterFormDto;
+import com.example.shopping.model.dto.UserDto;
 import com.example.shopping.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -50,26 +49,36 @@ public class AuthController {
 
     @PostMapping("/forgotPassword")
     public String forgotPassword(String email, ModelAndView modelAndView, RedirectAttributes redirectAttributes) {
-        if (!this.userService.checkEmailExistence(email)) {
+        UserDto user = this.userService.getUserByEmail(email);
+
+        if (user == null) {
             redirectAttributes.addFlashAttribute("invalidEmail", true);
             modelAndView.setViewName("redirect:/auth/forgotPassword");
 
             return "redirect:/auth/forgotPassword";
         }
-        redirectAttributes.addFlashAttribute("email", email);
-        return "redirect:/auth/changePassword";
+        redirectAttributes.addFlashAttribute("validEmail", true);
+
+        userService.sendConfirmationEmail(user);
+
+        return "redirect:/auth/forgotPassword";
     }
 
     @GetMapping("/changePassword")
-    public String changePassword() {
-        return "changePassword";
+    public ModelAndView changePassword(@RequestParam("token") String token, ModelAndView modelAndView) {
+        String userEmail = this.userService.verifyToken(token);
+
+        modelAndView.addObject("email", userEmail);
+        modelAndView.setViewName("changePassword");
+
+        return modelAndView;
     }
 
     @PostMapping("/changePassword")
     public ModelAndView changePassword(String email, String password, String confirmPassword, RedirectAttributes redirectAttributes, ModelAndView modelAndView) {
         if (password.equals(confirmPassword)) {
             this.userService.changePassword(email, password);
-            modelAndView.setViewName("Shopping");
+            modelAndView.setViewName("redirect:/");
 
             return modelAndView;
         }
@@ -84,6 +93,14 @@ public class AuthController {
     public String loginError(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("bad_credentials", true);
         return "redirect:/";
+    }
+
+    @ExceptionHandler(AccountIsNotActivatedException.class)
+    public ModelAndView notActivatedAccount(RedirectAttributes redirectAttributes, ModelAndView modelAndView) {
+        redirectAttributes.addFlashAttribute("notEnabled", true);
+        modelAndView.setViewName("redirect:/");
+
+        return modelAndView;
     }
 
     @ModelAttribute(name = "registerForm")
