@@ -9,9 +9,9 @@ logging:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: root
     url: jdbc:mysql://localhost:3306/shopping?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: root
+    username: ${DB_USERNAME}
+    password: ${DB_PASS}
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,8 +23,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: springappmail77@gmail.com
-    password: ueaq kcah vdfj ipmd
+    username: ${EMAIL}
+    password: ${PASSWORD}
     default-encoding: UTF-8
     properties:
       mail:
