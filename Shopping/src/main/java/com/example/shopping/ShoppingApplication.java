@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching
 @EnableAsync
 public class ShoppingApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ShoppingApplication.class, args);
     }

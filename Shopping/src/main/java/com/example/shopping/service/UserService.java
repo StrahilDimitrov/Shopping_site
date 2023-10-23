@@ -1,13 +1,15 @@
 package com.example.shopping.service;
 
-import com.example.shopping.model.dto.UserDto;
 import com.example.shopping.model.dto.RegisterFormDto;
+import com.example.shopping.model.dto.UserDto;
+import com.example.shopping.model.dto.UserProfileDto;
 import com.example.shopping.model.entity.ConfirmationEntity;
 import com.example.shopping.model.entity.UserEntity;
 import com.example.shopping.repository.ConfirmationRepository;
 import com.example.shopping.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -32,7 +34,6 @@ public class UserService {
                 userRegisterForm.getPhoneNumber());
 
         this.userRepository.save(user);
-
 
     }
 
@@ -65,5 +66,12 @@ public class UserService {
         this.confirmationRepository.save(confirmation);
 
         this.emailService.sendConfirmationEmail(user.getFirstName(), user.getEmail(), confirmation.getToken());
+    }
+
+    @Transactional
+    public UserProfileDto getUserProfile(String email) {
+        return this.userRepository.findByEmail(email)
+                .map(UserProfileDto::mapToUserProfileDto)
+                .orElse(null);
     }
 }
