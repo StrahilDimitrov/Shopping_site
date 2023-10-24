@@ -23,8 +23,8 @@ public class UserController {
         modelAndView.addObject("email", userDto.getEmail())
                 .addObject("fullName", user.getFullName())
                 .addObject("phoneNumber", user.getPhoneNumber())
-//                .addObject("country", userDto.getDeliveryAddresses().get(0).getCountry())
-//                .addObject("city", userDto.getDeliveryAddresses().get(0).getCity())
+                .addObject("country", userDto.getDeliveryAddresses().get(0).getCountry())
+                .addObject("city", userDto.getDeliveryAddresses().get(0).getCity())
                 .setViewName("profilePage");
 
         return modelAndView;
