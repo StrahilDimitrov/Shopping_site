@@ -693,5 +693,79 @@
 				"value": "2 years"
 			}
 		]
+	},
+	{
+		"productName": "Playstation 4 Slim",
+		"price": 549.0,
+		"description": "Конзола Sony Playstation 4 Slim",
+		"quantity": 10,
+		"image": "/images/playstations/PS4.jpg",
+		"category": {
+			"id": 6,
+			"name": "PLAYSTATIONS"
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "GDDR5 8 GB"
+			},
+			{
+				"name": "CPU",
+				"value": "x86-64 AMD Jaguar"
+			},
+			{
+				"name": "GPU",
+				"value": "1.84 TFLOPS, AMD Radeon"
+			},
+			{
+				"name": "HDD",
+				"value": "500 GB"
+			},
+			{
+				"name": "Network",
+				"value": "802.11 a/b/g/n/ac"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
+	},
+	{
+		"productName": "Playstation 4 Pro",
+		"price": 649.0,
+		"description": "Game console PLAYSTATION 4 PRO",
+		"quantity": 5,
+		"image": "/images/playstations/PS4_PRO.jpg",
+		"category": {
+			"id": 6,
+			"name": "PLAYSTATIONS"
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "GDDR5 8 GB"
+			},
+			{
+				"name": "CPU",
+				"value": "x86-64 AMD “Jaguar”, 8 core"
+			},
+			{
+				"name": "GPU",
+				"value": "4.20 TFLOPS, AMD Radeon"
+			},
+			{
+				"name": "HDD",
+				"value": "1TB"
+			},
+			{
+				"name": "Network",
+				"value": "IEEE 802.11 b/g/n/ac, Ethernet"
+			},
+			{
+				"name": "warranty",
+				"value": "1 years"
+			}
+		]
 	}
 ]
