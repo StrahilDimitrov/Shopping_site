@@ -1,14 +1,5 @@
 package com.example.shopping.service;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.example.shopping.model.entity.ProductEntity;
 import com.example.shopping.model.entity.SpecificationsEntity;
 import com.example.shopping.repository.OrderItemRepository;
@@ -16,6 +7,14 @@ import com.example.shopping.repository.ProductRepository;
 import com.example.shopping.repository.ShoppingItemRepository;
 import com.example.shopping.repository.SpecificationsRepository;
 import com.google.gson.Gson;
+import org.springframework.stereotype.Service;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class InitService {
@@ -25,8 +24,9 @@ public class InitService {
     private final ShoppingItemRepository shoppingItemRepository;
     private final OrderItemRepository orderItemRepository;
 
-    public InitService(ProductRepository productRepository, Gson gson, SpecificationsRepository specificationsRepository,
-                       ShoppingItemRepository shoppingItemRepository, OrderItemRepository orderItemRepository) {
+    public InitService(ProductRepository productRepository, Gson gson,
+                       SpecificationsRepository specificationsRepository, ShoppingItemRepository shoppingItemRepository,
+                       OrderItemRepository orderItemRepository) {
         this.productRepository = productRepository;
         this.specificationsRepository = specificationsRepository;
         this.gson = gson;

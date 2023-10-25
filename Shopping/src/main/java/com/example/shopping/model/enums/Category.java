@@ -3,7 +3,7 @@ package com.example.shopping.model.enums;
 public enum Category {
 
 	COMPUTERS("Computers"), SMARTPHONES("Smartphones"), SMARTWATCHES("Smart watches"), TABLETS("Tablets"),
-	LAPTOPS("Laptops"), PLAYSTATIONS("Playstations"), MONITORS("Monitors"), FLASHDRIVES("Flash drives");
+	LAPTOPS("Laptops"), CONSOLES("Consoles"), MONITORS("Monitors"), FLASHDRIVES("Flash drives");
 
 	public String name;
 
