@@ -8,7 +8,7 @@
     <title>Searching</title>
     <link rel="icon" type="image/icon" href="/images/logo.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/computerPage.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/searchPage.css"/>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
 </head>
@@ -19,9 +19,9 @@
 
 <div class="gallery">
     <div class="productContent" th:each="product : ${products}" th:object="${product}">
-        <h4 th:text="*{productName}"></h4>
+        <h3 th:text="*{productName}"></h3>
         <a th:href="@{/products/info/{id}(id=*{id})}"><img th:src="*{image}"/></a>
-        <h4 th:text="*{price}">.lv</h4>
+        <h3 th:text="*{price}">.lv</h3>
         <a class="btn" href="/add/{id}(id=*{id})">Add to cart</a>
     </div>
 </div>
