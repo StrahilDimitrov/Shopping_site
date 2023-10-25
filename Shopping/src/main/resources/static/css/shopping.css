@@ -90,6 +90,11 @@ section{
     color: #FF8C00;
 }
 
+.header .icons{
+    padding-right: 120px;
+    display: flex;
+}
+
 .header .icons div {
     height: 4.5rem;
     width: 4.5rem;
