@@ -20,10 +20,9 @@ public class SecurityConfiguration {
         httpSecurity
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/auth/**", "/", "/add/**", "/api/**")
+                        .requestMatchers("/auth/**", "/", "/add/**", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs")
                         .permitAll()
-                        .requestMatchers("/deleteCart", "/delete/**", "/categories", "/aboutUs", "/checkout",
-                                "/products/**", "/reviews", "/product/**", "/profile", "/billingAddress")
+                        .requestMatchers("/deleteCart", "/delete/**", "/checkout", "/profile", "/billingAddress")
                         .authenticated())
                 .formLogin(
                         login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")
