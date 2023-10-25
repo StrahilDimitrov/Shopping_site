@@ -656,5 +656,42 @@
 			"id": 2,
 			"name": "SMARTPHONES"
 		}
+	},
+	{
+		"productName": "Playstation 5",
+		"price": 999.0,
+		"description": "Конзола PLAYSTATION 5 PS5",
+		"quantity": 20,
+		"image": "/images/playstations/playstation.jpg",
+		"category": {
+			"id": 6,
+			"name": "PLAYSTATIONS"
+		},
+		"specs": [
+			{
+				"name": "Ram",
+				"value": "GDDR6 16GB, 448GB/s Bandwidth"
+			},
+			{
+				"name": "CPU",
+				"value": "x86-64-AMD Ryzen™ “Zen 2”"
+			},
+			{
+				"name": "GPU",
+				"value": "AMD Radeon™RDNA up to 2.23 GHz"
+			},
+			{
+				"name": "SSD",
+				"value": "SSD 825GB 5.5GB/S"
+			},
+			{
+				"name": "Network",
+				"value": "IEEE 802.11 a/b/g/n/ac/ax"
+			},
+			{
+				"name": "warranty",
+				"value": "2 years"
+			}
+		]
 	}
 ]
