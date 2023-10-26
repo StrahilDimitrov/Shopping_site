@@ -3,10 +3,6 @@ package com.example.shopping.service;
 import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.ShoppingCartDto;
 import com.example.shopping.model.dto.ShoppingCartItemDto;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.shopping.model.entity.ProductEntity;
 import com.example.shopping.model.entity.ShoppingCartEntity;
 import com.example.shopping.model.entity.ShoppingItemEntity;
@@ -15,6 +11,9 @@ import com.example.shopping.repository.ProductRepository;
 import com.example.shopping.repository.ShoppingCartRepository;
 import com.example.shopping.repository.ShoppingItemRepository;
 import com.example.shopping.repository.UserRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
@@ -49,19 +48,17 @@ public class ShoppingCartService {
 
         ShoppingItemEntity shoppingItem = this.shoppingItemRepository.findAllByProduct(product).orElse(null);
 
-        if (shoppingItem == null) {
+
+        if (shoppingItem == null && product.getQuantity() > 0) {
             shoppingItem = new ShoppingItemEntity();
             shoppingItem.setProduct(product).setCart(cart).setQuantity(1);
 
-        } else if (shoppingItem.getCart().getId() == cart.getId()) {
+        } else if (shoppingItem.getCart().getId().equals(cart.getId()) && shoppingItem.getQuantity() < product.getQuantity()) {
             shoppingItem.setQuantity(shoppingItem.getQuantity() + 1);
 
-        } else {
-            shoppingItem = new ShoppingItemEntity().setProduct(product).setCart(cart).setQuantity(1);
-
         }
-
         shoppingItemRepository.save(shoppingItem);
+
 
         return product.getCategory().getId();
     }
@@ -70,6 +67,7 @@ public class ShoppingCartService {
     public void deleteCart(String email) {
         UserEntity user = userRepository.findByEmail(email).get();
         this.shoppingCartRepository.deleteByUser(user);
+        this.shoppingItemService.refreshItems();
 
     }
 

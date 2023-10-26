@@ -5,10 +5,10 @@ let productSection = document.getElementById("products");
 
 
 fetch("http://localhost:8080/api/product/" + categoryId)
-	.then(response => response.json())
-	.then(element => {
-		element.forEach(product => {
-			let page = `<div class="productContent">
+    .then(response => response.json())
+    .then(element => {
+        element.forEach(product => {
+            let page = `<div class="productContent">
 					  <a href="/products/info/${product.id}"><img src="${product.image}"/></a>
 					  <h3>${product.productName}</h3>
 					  <p>Price: ${product.price}.лв<p>
@@ -22,6 +22,6 @@ fetch("http://localhost:8080/api/product/" + categoryId)
 					  <a class = "btn" href="/add/${product.id}">Add to cart</a>
 				  </div>`;
 
-			productSection.innerHTML += page;
-		})
-	})
+            productSection.innerHTML += page;
+        })
+    })
