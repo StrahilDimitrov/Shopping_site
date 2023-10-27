@@ -1,5 +1,6 @@
 package com.example.shopping.service;
 
+import com.example.shopping.model.dto.LoginForm;
 import com.example.shopping.model.dto.RegisterFormDto;
 import com.example.shopping.model.dto.UserDto;
 import com.example.shopping.model.dto.UserProfileDto;
@@ -11,12 +12,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ConfirmationRepository confirmationRepository;
-
     private final EmailService emailService;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ConfirmationRepository confirmationRepository, EmailService emailService) {
@@ -31,9 +33,14 @@ public class UserService {
 
         UserEntity user = new UserEntity(userRegisterForm.getFirstName(), userRegisterForm.getLastName(),
                 email, passwordEncoder.encode(userRegisterForm.getPassword()),
-                userRegisterForm.getPhoneNumber());
+                userRegisterForm.getPhoneNumber()).setEnabled(false);
 
-        this.userRepository.save(user);
+        user = this.userRepository.save(user);
+
+        ConfirmationEntity confirmation = new ConfirmationEntity(user);
+        this.confirmationRepository.save(confirmation);
+
+        this.emailService.sendAccountValidationEmail(userRegisterForm.getFirstName(), userRegisterForm.getEmail(), confirmation.getToken());
 
     }
 
@@ -73,5 +80,23 @@ public class UserService {
         return this.userRepository.findByEmail(email)
                 .map(UserProfileDto::mapToUserProfileDto)
                 .orElse(null);
+    }
+
+    public boolean isUserValid(LoginForm loginUser) {
+        Optional<UserEntity> user = this.userRepository.findByEmail(loginUser.getEmail());
+        if (user.isPresent()) {
+            if (user.get().getEnabled()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void validateUser(String token) {
+        UserEntity user = this.userRepository.findByEmail(verifyToken(token)).get();
+
+        user.setEnabled(true);
+
+        this.userRepository.save(user);
     }
 }

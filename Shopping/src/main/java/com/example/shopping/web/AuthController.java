@@ -1,8 +1,10 @@
 package com.example.shopping.web;
 
 import com.example.shopping.exceptions.AccountIsNotActivatedException;
+import com.example.shopping.model.dto.LoginForm;
 import com.example.shopping.model.dto.RegisterFormDto;
 import com.example.shopping.model.dto.UserDto;
+import com.example.shopping.service.AuthenticatedUserService;
 import com.example.shopping.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -91,6 +93,11 @@ public class AuthController {
 
     @PostMapping("/login-error")
     public String loginError(RedirectAttributes redirectAttributes) {
+        if (!AuthenticatedUserService.IS_VALID) {
+            redirectAttributes.addFlashAttribute("isNotValid", true);
+            return "redirect:/";
+        }
+
         redirectAttributes.addFlashAttribute("bad_credentials", true);
         return "redirect:/";
     }
