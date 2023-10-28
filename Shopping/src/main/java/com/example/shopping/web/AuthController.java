@@ -1,6 +1,5 @@
 package com.example.shopping.web;
 
-import com.example.shopping.exceptions.AccountIsNotActivatedException;
 import com.example.shopping.exceptions.ExpiredTokenException;
 import com.example.shopping.model.dto.RegisterFormDto;
 import com.example.shopping.model.dto.UserDto;
@@ -88,7 +87,13 @@ public class AuthController {
 
     @GetMapping("/changePassword")
     public ModelAndView changePassword(@RequestParam("token") String token, ModelAndView modelAndView) {
-        String userEmail = this.userService.verifyToken(token);
+        String userEmail = "";
+        try {
+            userEmail = this.userService.verifyToken(token);
+        } catch (ExpiredTokenException ex) {
+            //TODO
+        }
+
 
         modelAndView.addObject("email", userEmail);
         modelAndView.setViewName("changePassword");
@@ -110,7 +115,6 @@ public class AuthController {
         return modelAndView;
     }
 
-
     @PostMapping("/login-error")
     public String loginError(RedirectAttributes redirectAttributes) {
         if (!IS_VALID) {
@@ -120,14 +124,6 @@ public class AuthController {
 
         redirectAttributes.addFlashAttribute("bad_credentials", true);
         return "redirect:/";
-    }
-
-    @ExceptionHandler(AccountIsNotActivatedException.class)
-    public ModelAndView notActivatedAccount(RedirectAttributes redirectAttributes, ModelAndView modelAndView) {
-        redirectAttributes.addFlashAttribute("notEnabled", true);
-        modelAndView.setViewName("redirect:/");
-
-        return modelAndView;
     }
 
     @ModelAttribute(name = "registerForm")
