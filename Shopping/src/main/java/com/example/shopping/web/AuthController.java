@@ -87,13 +87,7 @@ public class AuthController {
 
     @GetMapping("/changePassword")
     public ModelAndView changePassword(@RequestParam("token") String token, ModelAndView modelAndView) {
-        String userEmail = "";
-        try {
-            userEmail = this.userService.verifyToken(token);
-        } catch (ExpiredTokenException ex) {
-            //TODO
-        }
-
+        String userEmail = this.userService.verifyToken(token);
 
         modelAndView.addObject("email", userEmail);
         modelAndView.setViewName("changePassword");
