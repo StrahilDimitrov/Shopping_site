@@ -1,10 +1,9 @@
 package com.example.shopping.web;
 
 import com.example.shopping.exceptions.AccountIsNotActivatedException;
-import com.example.shopping.model.dto.LoginForm;
+import com.example.shopping.exceptions.ExpiredTokenException;
 import com.example.shopping.model.dto.RegisterFormDto;
 import com.example.shopping.model.dto.UserDto;
-import com.example.shopping.service.AuthenticatedUserService;
 import com.example.shopping.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,6 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static com.example.shopping.utils.Utils.IS_VALID;
 
 @Controller
 @RequestMapping("/auth")
@@ -40,6 +41,25 @@ public class AuthController {
         }
 
         this.userService.registerUser(registerForm);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/verify")
+    public String verifyEmail(@RequestParam("token") String token) {
+        this.userService.validateUser(token);
+
+        return "redirect:/";
+    }
+
+    @ExceptionHandler(ExpiredTokenException.class)
+    public String expiredToken() {
+        return "VerificationPage";
+    }
+
+    @PostMapping("/sendVerification")
+    public String sendVerificationEmail(String email) {
+        this.userService.sendVerificationEmail(email);
 
         return "redirect:/";
     }
@@ -93,7 +113,7 @@ public class AuthController {
 
     @PostMapping("/login-error")
     public String loginError(RedirectAttributes redirectAttributes) {
-        if (!AuthenticatedUserService.IS_VALID) {
+        if (!IS_VALID) {
             redirectAttributes.addFlashAttribute("isNotValid", true);
             return "redirect:/";
         }

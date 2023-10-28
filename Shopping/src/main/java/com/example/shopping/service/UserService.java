@@ -1,6 +1,6 @@
 package com.example.shopping.service;
 
-import com.example.shopping.model.dto.LoginForm;
+import com.example.shopping.exceptions.ExpiredTokenException;
 import com.example.shopping.model.dto.RegisterFormDto;
 import com.example.shopping.model.dto.UserDto;
 import com.example.shopping.model.dto.UserProfileDto;
@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -56,6 +57,11 @@ public class UserService {
 
     public String verifyToken(String token) {
         ConfirmationEntity confirmation = this.confirmationRepository.findByToken(token);
+
+        if (LocalDateTime.now().isAfter(confirmation.getExpire())) {
+            throw new ExpiredTokenException("Verification link expired!");
+        }
+
         return confirmation.getUser().getEmail();
     }
 
@@ -75,21 +81,24 @@ public class UserService {
         this.emailService.sendConfirmationEmail(user.getFirstName(), user.getEmail(), confirmation.getToken());
     }
 
+    public void sendVerificationEmail(String email) {
+        Optional<UserEntity> user = this.userRepository.findByEmail(email);
+
+        if (user.isPresent()) {
+            UserEntity userEntity = user.get();
+            ConfirmationEntity confirmation = new ConfirmationEntity(userEntity);
+
+            this.confirmationRepository.save(confirmation);
+
+            this.emailService.sendAccountValidationEmail(userEntity.getFirstName(), userEntity.getEmail(), confirmation.getToken());
+        }
+    }
+
     @Transactional
     public UserProfileDto getUserProfile(String email) {
         return this.userRepository.findByEmail(email)
                 .map(UserProfileDto::mapToUserProfileDto)
                 .orElse(null);
-    }
-
-    public boolean isUserValid(LoginForm loginUser) {
-        Optional<UserEntity> user = this.userRepository.findByEmail(loginUser.getEmail());
-        if (user.isPresent()) {
-            if (user.get().getEnabled()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void validateUser(String token) {

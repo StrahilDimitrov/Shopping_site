@@ -17,6 +17,9 @@ public class ConfirmationEntity {
     @CreatedDate
     private LocalDateTime created;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime expire;
+
     @Column
     private String token;
     @ManyToOne
@@ -29,6 +32,7 @@ public class ConfirmationEntity {
     public ConfirmationEntity(UserEntity user) {
         this.user = user;
         this.created = LocalDateTime.now();
+        this.expire = created.plusMinutes(3L);
         this.token = UUID.randomUUID().toString();
     }
 
@@ -47,6 +51,15 @@ public class ConfirmationEntity {
 
     public ConfirmationEntity setCreated(LocalDateTime created) {
         this.created = created;
+        return this;
+    }
+
+    public LocalDateTime getExpire() {
+        return expire;
+    }
+
+    public ConfirmationEntity setExpire(LocalDateTime expire) {
+        this.expire = expire;
         return this;
     }
 

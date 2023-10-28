@@ -1,6 +1,5 @@
 package com.example.shopping.service;
 
-import com.example.shopping.exceptions.AccountIsNotActivatedException;
 import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.entity.UserEntity;
 import com.example.shopping.repository.UserRepository;
@@ -11,8 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
+import static com.example.shopping.utils.Utils.IS_VALID;
+
 public class AuthenticatedUserService implements UserDetailsService {
-    public static Boolean IS_VALID = false;
     private final UserRepository userRepository;
 
     public AuthenticatedUserService(UserRepository userRepository) {

@@ -54,7 +54,7 @@
 			<p>Forgot your password? <a href="/auth/forgotPassword">Click Here</a></p>
 			<p>Don't have an account<a href="/auth/register">Create Now</a></p>
 			<input type="submit" value="Login Now" class="btn" />
-			<p th:if="${isNotValid}" class="errors alert alert-danger">Please activate your account first!</p>
+			<p th:if="${isNotValid}" class="errors alert alert-danger">Please verify your email first!</p>
 			<p th:if="${bad_credentials}" class="errors alert alert-danger">Invalid
 				username or password.</p>
 		</form>
