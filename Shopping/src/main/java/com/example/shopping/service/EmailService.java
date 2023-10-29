@@ -14,6 +14,8 @@ import java.util.Map;
 
 @Service
 public class EmailService {
+    private static final String EMAIL_VERIFICATION_TEXT = "Please click below to verify your new account:";
+    private static final String PASSWORD_CHANG_VERIFICATION = "To change your password please click the link below.";
     private final JavaMailSender emailSender;
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -30,32 +32,25 @@ public class EmailService {
 
     @Async
     public void sendConfirmationEmail(String name, String to, String token) {
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setSubject("Changing password confirmation");
-            message.setFrom(fromEmail);
-            message.setTo(to);
-            message.setText(getEmailText(name, token));
-
-            emailSender.send(message);
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        createEmail(PASSWORD_CHANG_VERIFICATION, "Changing password confirmation", name, to, token);
     }
 
     @Async
     public void sendAccountValidationEmail(String name, String to, String token) {
+        createEmail(EMAIL_VERIFICATION_TEXT, "New User account verification.", name, to, token);
+    }
+
+    private void createEmail(String infoText, String subject, String name, String to, String token) {
         try {
             Context context = new Context();
-            context.setVariables(Map.of("name", name, "url", host + "/auth/verify?token=" + token));
+            context.setVariables(Map.of("name", name, "url", host + "/auth/verify?token=" + token, "infoText", infoText));
 
             String text = templateEngine.process("accountValidationEmail", context);
 
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-            helper.setSubject("New User account verification.");
+            helper.setSubject(subject);
             helper.setFrom(fromEmail);
             helper.setTo(to);
             helper.setText(text, true);
@@ -65,9 +60,5 @@ public class EmailService {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-    }
-
-    private String getEmailText(String name, String token) {
-        return "Hello " + name + "\n\nTo change your password please click the link below. \n\n" + host + "/auth/changePassword?token=" + token;
     }
 }
