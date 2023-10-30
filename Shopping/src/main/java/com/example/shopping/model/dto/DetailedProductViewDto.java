@@ -15,6 +15,8 @@ public class DetailedProductViewDto {
 
 	private String image;
 
+	private String video;
+
 	private String description;
 
 	private List<SpecificationDto> specs;
@@ -23,12 +25,13 @@ public class DetailedProductViewDto {
 		this.specs = new ArrayList<>();
 	}
 
-	public DetailedProductViewDto(String productName, BigDecimal price, String image, String description,
+	public DetailedProductViewDto(String productName, BigDecimal price, String image, String video, String description,
 			List<SpecificationDto> specs) {
 		this();
 		this.productName = productName;
 		this.price = price;
 		this.image = image;
+		this.video = video;
 		this.specs = specs;
 	}
 
@@ -68,6 +71,15 @@ public class DetailedProductViewDto {
 		return this;
 	}
 
+	public String getVideo() {
+		return video;
+	}
+
+	public DetailedProductViewDto setVideo(String video) {
+		this.video = video;
+		return this;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -89,12 +101,10 @@ public class DetailedProductViewDto {
 	public static DetailedProductViewDto mapToDetailedView(ProductEntity productEntity) {
 		DetailedProductViewDto product = new DetailedProductViewDto();
 
-		product.setId(productEntity.getId())
-			.setImage(productEntity.getImage())
-			.setPrice(productEntity.getPrice())
-			.setProductName(productEntity.getProductName())
-			.setDescription(productEntity.getDescription())
-			.setSpecs(productEntity.getSpecs().stream().map(SpecificationDto::mapToSpecDto).toList());
+		product.setId(productEntity.getId()).setImage(productEntity.getImage()).setVideo(productEntity.getVideoUrl())
+				.setPrice(productEntity.getPrice()).setProductName(productEntity.getProductName())
+				.setDescription(productEntity.getDescription())
+				.setSpecs(productEntity.getSpecs().stream().map(SpecificationDto::mapToSpecDto).toList());
 
 		return product;
 	}

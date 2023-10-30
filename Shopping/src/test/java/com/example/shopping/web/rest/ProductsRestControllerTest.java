@@ -21,13 +21,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ProductsRestControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
+	@Autowired
+	private MockMvc mockMvc;
 
-    @MockBean
-    private ProductService productService;
+	@MockBean
+	private ProductService productService;
 
-    @Test
+	@Test
     public void testGetAllProducts() throws Exception {
         when(productService.getAllProducts())
                 .thenReturn(List.of(createProduct("ACER", 1500), createProduct("ASUS", 2000)));
@@ -42,9 +42,9 @@ public class ProductsRestControllerTest {
                 .andExpect(jsonPath("$.[1].price", is(2000)));
     }
 
-    private ProductViewDto createProduct(String name, int price) {
-        ProductViewDto product = new ProductViewDto(name, BigDecimal.valueOf(price), "path", 1);
+	private ProductViewDto createProduct(String name, int price) {
+		ProductViewDto product = new ProductViewDto(name, BigDecimal.valueOf(price), "path", "url", 1);
 
-        return product;
-    }
+		return product;
+	}
 }

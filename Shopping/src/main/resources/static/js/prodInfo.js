@@ -3,12 +3,14 @@ let productId = document.getElementById("productId").getAttribute("value");
 let counter = 0;
 
 let placeholder = document.getElementById('information');
+let videoSection = document.getElementById('videoId');
 
 fetch(backendLocation + "api/product/info/" + productId)
 	.then(response => response.json())
 	.then(productInfo => {
 
 		let out = "";
+		let vid = "";
 
 		out += `<tr>
 				<th id = "pictures"><img src="${productInfo.image}" /></th>
@@ -19,20 +21,29 @@ fetch(backendLocation + "api/product/info/" + productId)
 			</tr>`
 
 		for (const element of productInfo.specs) {
-			if(counter % 2 === 0){
+			if (counter % 2 === 0) {
 				out += `<tr id = "color">
 					<td>${element.name}</th>
 					<td>${element.value}</th>
 				</tr>
 			</table>`
 			}
-			else{
+			else {
 				out += `<tr>
 					<td>${element.name}</th>
 					<td>${element.value}</th>
 				</tr>`
 			}
+
 			counter++;
 		}
+
+		vid += `<iframe id="frame"
+					src= https://www.youtube.com/embed/${productInfo.video}> 
+				</iframe>`
+
+		console.log(productInfo.video)
+
 		placeholder.innerHTML = out;
+		videoSection.innerHTML = vid;
 	})

@@ -35,6 +35,9 @@ public class ProductEntity {
 	@Column
 	private String image;
 
+	@Column(name = "video_url")
+	private String videoUrl;
+
 	@ManyToOne
 	private CategoryEntity category;
 
@@ -46,13 +49,14 @@ public class ProductEntity {
 	}
 
 	public ProductEntity(String productName, BigDecimal price, String description, int quantity, String image,
-			CategoryEntity category, List<SpecificationsEntity> specs) {
+			String videoUrl, CategoryEntity category, List<SpecificationsEntity> specs) {
 		this();
 		this.productName = productName;
 		this.price = price;
 		this.description = description;
 		this.quantity = quantity;
 		this.image = image;
+		this.videoUrl = videoUrl;
 		this.category = category;
 		this.specs = specs;
 	}
@@ -108,6 +112,15 @@ public class ProductEntity {
 
 	public ProductEntity setImage(String image) {
 		this.image = image;
+		return this;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public ProductEntity setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 		return this;
 	}
 
