@@ -37,13 +37,14 @@ fetch(backendLocation + "api/product/info/" + productId)
 
 			counter++;
 		}
-
-		vid += `<iframe id="frame"
+		if (productInfo.video != null) {
+			vid += `<iframe id="frame"
 					src= https://www.youtube.com/embed/${productInfo.video}> 
 				</iframe>`
 
-		console.log(productInfo.video)
-
+			
+		}
+		
 		placeholder.innerHTML = out;
 		videoSection.innerHTML = vid;
 	})
