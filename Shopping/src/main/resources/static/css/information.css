@@ -145,3 +145,9 @@ html {
     background: #FF8C00;
     color: #FFF;
 }
+
+#frame{
+    margin: 20px 300px;
+    width: 1200px;
+    height: 600px;
+}
