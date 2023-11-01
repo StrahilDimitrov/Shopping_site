@@ -14,13 +14,17 @@ import java.util.Map;
 @Service
 public class EmailService {
     private static final String EMAIL_VERIFICATION_TEXT = "Please click below to verify your new account:";
-    private static final String PASSWORD_CHANG_VERIFICATION = "To change your password please click the link below.";
+    private static final String PASSWORD_CHANGE_VERIFICATION = "To change your password please click the link below.";
+
     private final JavaMailSender emailSender;
     @Value("${spring.mail.username}")
     private String fromEmail;
 
     @Value("${spring.mail.verify.host}")
     private String host;
+
+    private final static String PASSWORD_CHANGE_URL = "/auth/changePassword?token=";
+    private final static String EMAIL_VERIFICATION_URL = "/auth/verify?token=";
 
     private final TemplateEngine templateEngine;
 
@@ -31,18 +35,20 @@ public class EmailService {
 
     @Async
     public void sendConfirmationEmail(String name, String to, String token) {
-        createEmail(PASSWORD_CHANG_VERIFICATION, "Changing password confirmation", name, to, token);
+        String url = host + PASSWORD_CHANGE_URL + token;
+        createEmail(PASSWORD_CHANGE_VERIFICATION, "Changing password confirmation", url, name, to);
     }
 
     @Async
     public void sendAccountValidationEmail(String name, String to, String token) {
-        createEmail(EMAIL_VERIFICATION_TEXT, "New User account verification.", name, to, token);
+        String url = host + EMAIL_VERIFICATION_URL + token;
+        createEmail(EMAIL_VERIFICATION_TEXT, "New User account verification.", url, name, to);
     }
 
-    private void createEmail(String infoText, String subject, String name, String to, String token) {
+    private void createEmail(String infoText, String subject, String url, String name, String to) {
         try {
             Context context = new Context();
-            context.setVariables(Map.of("name", name, "url", host + "/auth/verify?token=" + token, "infoText", infoText));
+            context.setVariables(Map.of("name", name, "url", url, "infoText", infoText));
 
             String text = templateEngine.process("accountValidationEmail", context);
 
