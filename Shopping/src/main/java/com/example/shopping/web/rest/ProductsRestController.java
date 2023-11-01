@@ -1,21 +1,14 @@
 package com.example.shopping.web.rest;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.shopping.model.dto.ApplicationUserDetails;
 import com.example.shopping.model.dto.DetailedProductViewDto;
 import com.example.shopping.model.dto.ProductViewDto;
 import com.example.shopping.model.entity.CategoryEntity;
 import com.example.shopping.service.CategoryService;
 import com.example.shopping.service.ProductService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -37,8 +30,7 @@ public class ProductsRestController {
 	}
 
 	@GetMapping("/product/{id}")
-	public ResponseEntity<List<ProductViewDto>> getProducts(@AuthenticationPrincipal ApplicationUserDetails user,
-			@PathVariable(name = "id") Long id) {
+	public ResponseEntity<List<ProductViewDto>> getProducts(@PathVariable(name = "id") Long id) {
 		CategoryEntity category = this.categoryService.getCategoryById(id);
 		List<ProductViewDto> products = this.productService.getProductsFromCat(category);
 

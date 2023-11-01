@@ -29,7 +29,7 @@ public class UserService {
         this.emailService = emailService;
     }
 
-    public void registerUser(RegisterFormDto userRegisterForm) {
+    public UserDto registerUser(RegisterFormDto userRegisterForm) {
         String email = userRegisterForm.getEmail();
 
         UserEntity user = new UserEntity(userRegisterForm.getFirstName(), userRegisterForm.getLastName(),
@@ -42,6 +42,8 @@ public class UserService {
         this.confirmationRepository.save(confirmation);
 
         this.emailService.sendAccountValidationEmail(userRegisterForm.getFirstName(), userRegisterForm.getEmail(), confirmation.getToken());
+
+        return UserDto.mapToUserDto(user);
 
     }
 
