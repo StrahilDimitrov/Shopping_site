@@ -20,16 +20,16 @@ public class ProductEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "product_name")
+	@Column(name = "product_name", nullable = false)
 	private String productName;
 
-	@Column
+	@Column(nullable = false)
 	private BigDecimal price;
 
 	@Column
 	private String description;
 
-	@Column
+	@Column(nullable = false)
 	private int quantity;
 
 	@Column

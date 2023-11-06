@@ -24,13 +24,13 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
     @Column(name = "is_enabled")

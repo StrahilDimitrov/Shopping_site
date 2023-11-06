@@ -20,10 +20,10 @@ public class AddressEntity {
 
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Column
+    @Column(nullable = false)
     private String country;
 
-    @Column
+    @Column(nullable = false)
     private String city;
 
     @Column
