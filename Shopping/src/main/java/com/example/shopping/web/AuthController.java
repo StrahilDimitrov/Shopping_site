@@ -112,6 +112,7 @@ public class AuthController {
     @PostMapping("/login-error")
     public String loginError(RedirectAttributes redirectAttributes) {
         if (!IS_VALID) {
+            IS_VALID = true;
             redirectAttributes.addFlashAttribute("isNotValid", true);
             return "redirect:/";
         }
