@@ -2,21 +2,27 @@ package com.example.shopping.model.entity;
 
 import jakarta.persistence.*;
 
-//TODO
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "credit_cards")
 public class CreditCardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "owner_name")
     private String ownerName;
 
-    @Column
+    @Column(name = "card_number")
     private String cardNumber;
 
-    @Column
-    private String code;
+    @Column(name = "CVC_code")
+    private String cvcCode;
+
+    @Column(name = "expiration_date")
+    private LocalDate expDate;
 
     @ManyToOne(targetEntity = UserEntity.class)
     private UserEntity user;
@@ -25,10 +31,11 @@ public class CreditCardEntity {
 
     }
 
-    public CreditCardEntity(String ownerName, String cardNumber, String code, UserEntity user) {
+    public CreditCardEntity(String ownerName, String cardNumber, String cvcCode, LocalDate expDate, UserEntity user) {
         this.ownerName = ownerName;
         this.cardNumber = cardNumber;
-        this.code = code;
+        this.cvcCode = cvcCode;
+        this.expDate = expDate;
         this.user = user;
     }
 
@@ -59,12 +66,12 @@ public class CreditCardEntity {
         return this;
     }
 
-    public String getCode() {
-        return code;
+    public String getCvcCode() {
+        return cvcCode;
     }
 
-    public CreditCardEntity setCode(String code) {
-        this.code = code;
+    public CreditCardEntity setCvcCode(String cvcCode) {
+        this.cvcCode = cvcCode;
         return this;
     }
 
@@ -74,6 +81,15 @@ public class CreditCardEntity {
 
     public CreditCardEntity setUser(UserEntity user) {
         this.user = user;
+        return this;
+    }
+
+    public LocalDate getExpDate() {
+        return expDate;
+    }
+
+    public CreditCardEntity setExpDate(LocalDate expDate) {
+        this.expDate = expDate;
         return this;
     }
 }
