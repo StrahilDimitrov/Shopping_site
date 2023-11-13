@@ -103,11 +103,8 @@ public class UserService {
                 .orElse(null);
     }
 
+    @Transactional
     public void validateUser(String token) {
-        UserEntity user = this.userRepository.findByEmail(verifyToken(token)).get();
-
-        user.setEnabled(true);
-
-        this.userRepository.save(user);
+        this.userRepository.updateAccountStatus(true, verifyToken(token));
     }
 }
