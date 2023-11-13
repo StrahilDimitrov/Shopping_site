@@ -22,7 +22,7 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/auth/**", "/", "/add/**", "/api/**", "/products/**", "/reviews", "/product/**", "/categories", "/aboutUs")
                         .permitAll()
-                        .requestMatchers("/deleteCart", "/delete/**", "/checkout", "/profile", "/billingAddress")
+                        .requestMatchers("/deleteCart", "/delete/**", "/checkout", "/profile", "/billingAddress", "/creditCard/**")
                         .authenticated())
                 .formLogin(
                         login -> login.loginPage("/auth/login").usernameParameter("email").passwordParameter("password")

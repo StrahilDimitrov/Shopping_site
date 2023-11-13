@@ -16,9 +16,8 @@ public class OrderController {
 
     @GetMapping("/checkout")
     public String placeOrder(@AuthenticationPrincipal ApplicationUserDetails user) {
-        orderService.placeOrder(user.getUsername());
-
-        return "redirect:/";
+        //TODO
+        return "cardInformation";
     }
 
 }
