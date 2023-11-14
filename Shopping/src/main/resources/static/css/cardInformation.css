@@ -1,47 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    color: #444;
 }
 
-.container {
-    min-height: 100vh;
-    background: #EEE;
+body {
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-flow: column;
-    padding-bottom: 60px;
 }
 
-.container form {
+.container {
+    display: flex;
+    width: 67%;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.left {
+    width: 25%;
+    font-weight: bold;
+}
+
+.left p {
+    padding: 30px 20px;
+}
+
+.methods {
+    padding: 10px 0;
+}
+
+.methods div {
+    padding: 7px 20px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.methods div::after {
+    content: '';
+    display: inline-block;
+    color: green;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 4px 0 4px 4px;
+    margin-left: 10px;
+}
+
+.fa {
+    margin-right: 10px;
+    font-size: 22px;
+    color: #AAA;
+}
+
+.container .center form {
     background: #FFF;
     border-radius: 5px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    margin-left: 30px;
     padding: 20px;
     width: 600px;
     padding-top: 160px;
 }
 
-.container form .inputBox {
+.container .center form .inputBox {
     margin-top: 20px;
 }
 
-.container form .inputBox span {
+.container .center form .inputBox span {
     display: block;
     color: #999;
     padding-bottom: 5px;
 }
 
-.container form .inputBox input,
-.container form .inputBox select {
+.container .center form .inputBox input,
+.container .center form .inputBox select {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
@@ -49,16 +88,16 @@
     color: #444;
 }
 
-.container form .flexBox {
+.container .center form .flexBox {
     display: flex;
     gap: 15px;
 }
 
-.container form .flexBox .inputBox {
+.container .center form .flexBox .inputBox {
     flex: 1 1 150px;
 }
 
-.container form .submit-btn {
+.container .center form .submit-btn {
     width: 100%;
     background: linear-gradient(45deg, blueviolet, deeppink);
     margin-top: 20px;
@@ -70,19 +109,20 @@
     transition: .2s linear;
 }
 
-.container form .submit-btn:hover {
+.container .center form .submit-btn:hover {
     letter-spacing: 2px;
     opacity: .8;
 }
 
-.container .card-cantainer {
+.container .center .card-cantainer {
     margin-bottom: -150px;
+    margin-left: 120px;
     position: relative;
     height: 250px;
     width: 400px;
 }
 
-.container .card-cantainer .front {
+.container .center .card-cantainer .front {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -97,37 +137,37 @@
     transition: transform .4s ease-out;
 }
 
-.container .card-cantainer .front .image {
+.container .center .card-cantainer .front .image {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 10px;
 }
 
-.container .card-cantainer .front .image img {
+.container .center .card-cantainer .front .image img {
     height: 50px;
 }
 
-.container .card-cantainer .front .card-number-box {
+.container .center .card-cantainer .front .card-number-box {
     padding: 30px 0;
     font-size: 22px;
     color: #FFF;
 }
 
-.container .card-cantainer .front .flexBox {
+.container .center .card-cantainer .front .flexBox {
     display: flex;
 }
 
-.container .card-cantainer .front .flexBox .box:nth-child(1) {
+.container .center .card-cantainer .front .flexBox .box:nth-child(1) {
     margin-right: auto;
 }
 
-.container .card-cantainer .front .flexBox .box {
+.container .center .card-cantainer .front .flexBox .box {
     font-size: 15px;
     color: #FFF;
 }
 
-.container .card-cantainer .back {
+.container .center .card-cantainer .back {
     position: absolute;
     top: 0;
     left: 0;
@@ -143,23 +183,23 @@
     transition: transform .4s ease-out;
 }
 
-.container .card-cantainer .back .stripe {
+.container .center .card-cantainer .back .stripe {
     background: #000;
     width: 100%;
     margin: 10px 0;
     height: 50px;
 }
 
-.container .card-cantainer .back .box {
+.container .center .card-cantainer .back .box {
     padding: 0 20px;
 }
 
-.container .card-cantainer .back .box span {
+.container .center .card-cantainer .back .box span {
     color: #FFF;
     font-size: 15px;
 }
 
-.container .card-cantainer .back .box .cvv-box {
+.container .center .card-cantainer .back .box .cvv-box {
     height: 50px;
     padding: 10px;
     margin-top: 5px;
@@ -169,7 +209,25 @@
     width: 100%;
 }
 
-.container .card-cantainer .back .box img {
+.container .center .card-cantainer .back .box img {
     margin-top: 30px;
     height: 30px;
+}
+
+.right {
+    width: 25%;
+}
+
+.right p {
+    padding: 30px 20px;
+    font-weight: bold;
+}
+
+.details {
+    padding: 20px 20px;
+}
+
+.details img {
+    height: 60px;
+    width: auto;
 }
