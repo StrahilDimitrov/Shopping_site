@@ -27,3 +27,28 @@ document.querySelector('.cvv-input').onmouseleave = () => {
 document.querySelector('.cvv-input').oninput = () => {
     document.querySelector('.cvv-box').innerText = document.querySelector('.cvv-input').value;
 }
+
+
+
+let tColorA = document.getElementById('tColorA'),
+    tColorC = document.getElementById('tColorC'),
+    iconA = document.querySelector('.fa-credit-card-alt'),
+    iconC = document.querySelector('.fa-money'),
+    cDetails = document.querySelector('.center')
+
+
+function doFun() {
+    tColorA.style.color = "green";
+    tColorC.style.color = "#444";
+    iconA.style.color = "green";
+    iconC.style.color = "#444";
+    cDetails.style.display = "block";
+}
+
+function doFunA() {
+    tColorA.style.color = "#444";
+    tColorC.style.color = "green";
+    iconA.style.color = "#aaa";
+    iconC.style.color = "green";
+    cDetails.style.display = "none";
+}
