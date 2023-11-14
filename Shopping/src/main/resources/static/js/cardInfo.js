@@ -36,7 +36,6 @@ let tColorA = document.getElementById('tColorA'),
     iconC = document.querySelector('.fa-money'),
     cDetails = document.querySelector('.center')
 
-
 function doFun() {
     tColorA.style.color = "green";
     tColorC.style.color = "#444";
